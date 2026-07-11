@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { nav, profile } from "@/lib/data";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { AnimatedThemeToggler } from "@/components/ruixen/animated-theme-toggler";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -26,9 +26,9 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full px-4 pt-3">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 shadow-sm backdrop-blur-xl backdrop-saturate-150">
-        <div className="flex items-center gap-1">
+    <header className="sticky top-0 z-40 w-full px-3 pt-3 sm:px-4">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-1 rounded-2xl border border-border/60 bg-background/60 px-1.5 py-1.5 shadow-sm backdrop-blur-xl backdrop-saturate-150 sm:gap-2 sm:px-2">
+        <nav className="flex items-center gap-0.5 sm:gap-1">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -39,7 +39,7 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-sm transition-colors",
+                  "rounded-lg px-2 py-1.5 text-[13px] transition-colors sm:px-3 sm:text-sm",
                   active
                     ? "font-medium text-foreground"
                     : "text-muted-foreground hover:text-foreground",
@@ -49,15 +49,15 @@ export function Navbar() {
               </Link>
             );
           })}
-        </div>
+        </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5 sm:gap-1">
           <a
             href={profile.twitter}
             target="_blank"
             rel="noreferrer"
             aria-label="X (Twitter)"
-            className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
             <XIcon className="size-4" />
           </a>
@@ -65,12 +65,15 @@ export function Navbar() {
             href={profile.github}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            aria-label="GitHub"
+            className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
             <GithubIcon className="size-4" />
-            <span className="font-medium">{profile.githubStars}</span>
+            <span className="hidden font-medium sm:inline">
+              {profile.githubStars}
+            </span>
           </a>
-          <ThemeToggle />
+          <AnimatedThemeToggler />
         </div>
       </div>
     </header>
