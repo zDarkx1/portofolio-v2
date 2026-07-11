@@ -95,14 +95,14 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 mx-auto w-full max-w-3xl border-b border-transparent transition-all ease-out sm:top-3 sm:rounded-2xl sm:border",
+        "sticky top-0 z-50 mx-auto w-full max-w-full border-b border-transparent transition-all duration-300 ease-out",
         scrolled &&
-          "border-border/60 bg-background/70 shadow-sm backdrop-blur-xl backdrop-saturate-150 sm:max-w-2xl",
+          "border-border/60 bg-background/70 shadow-sm backdrop-blur-xl backdrop-saturate-150 sm:top-3 sm:max-w-2xl sm:rounded-2xl sm:border",
       )}
     >
       <nav
         className={cn(
-          "flex h-14 items-center justify-between gap-2 px-4 transition-all ease-out sm:h-12",
+          "mx-auto flex h-14 w-full max-w-3xl items-center justify-between gap-2 px-4 transition-all duration-300 ease-out sm:h-12",
           scrolled && "sm:px-3",
         )}
       >
