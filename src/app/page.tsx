@@ -1,65 +1,147 @@
-import Image from "next/image";
+import { Mail } from "lucide-react";
+import {
+  profile,
+  projects,
+  articles,
+  experience,
+  skills,
+  stack,
+  homeBio,
+  aboutPhotos,
+} from "@/lib/data";
+import { Section, SectionHeader } from "@/components/section";
+import { ProjectCard } from "@/components/project-card";
+import { ArticleCard } from "@/components/article-card";
 
-export default function Home() {
+export default function HomePage() {
+  const selectedWork = projects.slice(0, 4);
+  const latest = articles.slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div>
+      {/* Hero */}
+      <section className="flex flex-col items-start">
+        <div
+          className="mb-6 flex size-20 items-center justify-center rounded-full bg-muted text-2xl font-semibold text-muted-foreground"
+          aria-label={`${profile.name}'s avatar`}
+        >
+          {profile.name.charAt(0)}
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          Hi, I&apos;m {profile.name}
+        </h1>
+        <p className="mt-3 max-w-lg text-muted-foreground">{profile.tagline}</p>
+        <a
+          href={`mailto:${profile.email}`}
+          className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground underline-offset-4 hover:underline"
+        >
+          <Mail className="size-4" />
+          {profile.email}
+        </a>
+      </section>
+
+      {/* Selected work */}
+      <Section>
+        <SectionHeader
+          title="Selected work"
+          action={{ label: "View all", href: "/projects" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {selectedWork.map((p) => (
+            <ProjectCard key={p.slug} project={p} />
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </Section>
+
+      {/* My stack */}
+      <Section>
+        <SectionHeader title="My stack" />
+        <div className="flex flex-wrap gap-2">
+          {stack.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border bg-card px-3 py-1.5 text-sm text-muted-foreground"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
-      </main>
+      </Section>
+
+      {/* About */}
+      <Section>
+        <SectionHeader title="About" />
+        <div className="space-y-4 text-muted-foreground">
+          {homeBio.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-6 grid grid-cols-3 gap-3">
+          {aboutPhotos.map((photo) => (
+            <div
+              key={photo.label}
+              className="relative flex aspect-square items-end justify-start overflow-hidden rounded-xl"
+              style={{ background: photo.color }}
+            >
+              <span className="m-2 text-2xl">{photo.emoji}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Experience */}
+      <Section>
+        <SectionHeader title="Experience" />
+        <ul className="space-y-1">
+          {experience.map((job) => (
+            <li key={job.company}>
+              <a
+                href={job.href}
+                className="group -mx-3 flex items-center justify-between gap-4 rounded-lg px-3 py-3 transition-colors hover:bg-accent"
+              >
+                <div>
+                  <p className="font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+                    {job.company}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{job.role}</p>
+                </div>
+                <span className="shrink-0 text-sm text-muted-foreground">
+                  {job.period}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Skills */}
+      <Section>
+        <SectionHeader title="Skills" />
+        <ul className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+          {skills.map((skill) => (
+            <li
+              key={skill}
+              className="flex items-start gap-2 text-sm text-muted-foreground"
+            >
+              <span className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground" />
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Latest writing */}
+      <Section>
+        <SectionHeader
+          title="Latest writing"
+          action={{ label: "Read all", href: "/articles" }}
+        />
+        <div>
+          {latest.map((a) => (
+            <ArticleCard key={a.slug} article={a} />
+          ))}
+        </div>
+      </Section>
     </div>
   );
 }

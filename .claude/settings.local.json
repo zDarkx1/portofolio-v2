@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:echo-nextjs-template.vercel.app)"
+      "WebFetch(domain:echo-nextjs-template.vercel.app)",
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\('next',p.dependencies.next\\);console.log\\('react',p.dependencies.react\\);console.log\\('tailwind',p.devDependencies.tailwindcss\\)\")",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'Build Echo-style portfolio: layout, home, projects, about, articles *)",
+      "Bash(git branch *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ]
   }
 }
