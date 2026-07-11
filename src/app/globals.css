@@ -74,6 +74,17 @@ body {
   border-radius: 9999px;
 }
 
+/* Spotify equalizer bars */
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
 /* Prevent a flash of visible content before GSAP takes over.
    Only hides when motion is allowed — reduced-motion users always see content. */
 @media (prefers-reduced-motion: no-preference) {

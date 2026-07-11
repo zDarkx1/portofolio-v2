@@ -9,7 +9,13 @@
       "Bash(git commit -q -m 'Build Echo-style portfolio: layout, home, projects, about, articles *)",
       "Bash(git branch *)",
       "Bash(git remote *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter 'grep -v \"Co-Authored-By: Claude\"' HEAD)",
+      "Bash(git stash *)",
+      "Bash(git update-ref *)",
+      "Bash(git reflog *)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(npm run *)"
     ]
   }
 }
