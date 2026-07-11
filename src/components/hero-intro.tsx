@@ -18,18 +18,21 @@ export function HeroIntro() {
         return;
       }
 
+      // fromTo (not from): the CSS anti-flash rule pins the natural opacity to
+      // 0, so a plain .from() would tween 0 -> 0 and never reveal. Pin the end
+      // state explicitly.
       const tl = gsap.timeline({ defaults: { ease: EASE } });
-      tl.from("[data-hero-avatar]", {
-        autoAlpha: 0,
-        scale: 0.8,
-        y: 8,
-        duration: 0.8,
-      }).from(
+      tl.fromTo(
+        "[data-hero-avatar]",
+        { autoAlpha: 0, scale: 0.8, y: 8 },
+        { autoAlpha: 1, scale: 1, y: 0, duration: 0.8 },
+      ).fromTo(
         items,
+        { autoAlpha: 0, y: 22, filter: "blur(8px)" },
         {
-          autoAlpha: 0,
-          y: 22,
-          filter: "blur(8px)",
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
           duration: 0.9,
           stagger: 0.09,
         },
