@@ -73,3 +73,14 @@ body {
   background: var(--border);
   border-radius: 9999px;
 }
+
+/* Prevent a flash of visible content before GSAP takes over.
+   Only hides when motion is allowed — reduced-motion users always see content. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal],
+  [data-reveal-group] > *,
+  [data-hero],
+  [data-hero-avatar] {
+    opacity: 0;
+  }
+}

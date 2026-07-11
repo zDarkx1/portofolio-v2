@@ -1,6 +1,4 @@
-import { Mail } from "lucide-react";
 import {
-  profile,
   projects,
   articles,
   experience,
@@ -12,6 +10,8 @@ import {
 import { Section, SectionHeader } from "@/components/section";
 import { ProjectCard } from "@/components/project-card";
 import { ArticleCard } from "@/components/article-card";
+import { HeroIntro } from "@/components/hero-intro";
+import { Reveal } from "@/components/anim/reveal";
 
 export default function HomePage() {
   const selectedWork = projects.slice(0, 4);
@@ -19,26 +19,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="flex flex-col items-start">
-        <div
-          className="mb-6 flex size-20 items-center justify-center rounded-full bg-muted text-2xl font-semibold text-muted-foreground"
-          aria-label={`${profile.name}'s avatar`}
-        >
-          {profile.name.charAt(0)}
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Hi, I&apos;m {profile.name}
-        </h1>
-        <p className="mt-3 max-w-lg text-muted-foreground">{profile.tagline}</p>
-        <a
-          href={`mailto:${profile.email}`}
-          className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground underline-offset-4 hover:underline"
-        >
-          <Mail className="size-4" />
-          {profile.email}
-        </a>
-      </section>
+      <HeroIntro />
 
       {/* Selected work */}
       <Section>
@@ -46,17 +27,21 @@ export default function HomePage() {
           title="Selected work"
           action={{ label: "View all", href: "/projects" }}
         />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Reveal
+          as="div"
+          stagger
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+        >
           {selectedWork.map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* My stack */}
       <Section>
         <SectionHeader title="My stack" />
-        <div className="flex flex-wrap gap-2">
+        <Reveal as="div" stagger className="flex flex-wrap gap-2">
           {stack.map((tech) => (
             <span
               key={tech}
@@ -65,18 +50,18 @@ export default function HomePage() {
               {tech}
             </span>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* About */}
       <Section>
         <SectionHeader title="About" />
-        <div className="space-y-4 text-muted-foreground">
+        <Reveal as="div" stagger className="space-y-4 text-muted-foreground">
           {homeBio.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-        </div>
-        <div className="mt-6 grid grid-cols-3 gap-3">
+        </Reveal>
+        <Reveal as="div" stagger className="mt-6 grid grid-cols-3 gap-3">
           {aboutPhotos.map((photo) => (
             <div
               key={photo.label}
@@ -86,13 +71,13 @@ export default function HomePage() {
               <span className="m-2 text-2xl">{photo.emoji}</span>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* Experience */}
       <Section>
         <SectionHeader title="Experience" />
-        <ul className="space-y-1">
+        <Reveal as="ul" stagger className="space-y-1">
           {experience.map((job) => (
             <li key={job.company}>
               <a
@@ -111,13 +96,17 @@ export default function HomePage() {
               </a>
             </li>
           ))}
-        </ul>
+        </Reveal>
       </Section>
 
       {/* Skills */}
       <Section>
         <SectionHeader title="Skills" />
-        <ul className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+        <Reveal
+          as="ul"
+          stagger
+          className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2"
+        >
           {skills.map((skill) => (
             <li
               key={skill}
@@ -127,7 +116,7 @@ export default function HomePage() {
               {skill}
             </li>
           ))}
-        </ul>
+        </Reveal>
       </Section>
 
       {/* Latest writing */}
@@ -136,11 +125,11 @@ export default function HomePage() {
           title="Latest writing"
           action={{ label: "Read all", href: "/articles" }}
         />
-        <div>
+        <Reveal as="div" stagger>
           {latest.map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}
-        </div>
+        </Reveal>
       </Section>
     </div>
   );

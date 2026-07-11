@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { PromoBanner } from "@/components/promo-banner";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { GooFilter } from "@/components/anim/goo-filter";
 import { profile } from "@/lib/data";
 
 const geistSans = Geist({
@@ -33,13 +34,17 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col"
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <GooFilter />
           <PromoBanner />
           <Navbar />
           <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { projects } from "@/lib/data";
 import { ProjectCard } from "@/components/project-card";
+import { Reveal } from "@/components/anim/reveal";
 import { cn } from "@/lib/utils";
 
 const FILTERS = ["All", "Featured", "Open Source", "Personal"] as const;
@@ -43,11 +44,16 @@ export default function ProjectsPage() {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <Reveal
+        key={filter}
+        as="div"
+        stagger
+        className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
+      >
         {visible.map((p) => (
           <ProjectCard key={p.slug} project={p} />
         ))}
-      </div>
+      </Reveal>
     </div>
   );
 }

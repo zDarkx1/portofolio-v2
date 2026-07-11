@@ -9,6 +9,7 @@ import {
 import { Section, SectionHeader } from "@/components/section";
 import { ProjectCard } from "@/components/project-card";
 import { ArticleCard } from "@/components/article-card";
+import { Reveal } from "@/components/anim/reveal";
 
 function PosterGrid({
   items,
@@ -16,7 +17,7 @@ function PosterGrid({
   items: { title: string; color: string }[];
 }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <Reveal as="div" stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {items.map((item) => (
         <div
           key={item.title}
@@ -28,7 +29,7 @@ function PosterGrid({
           </span>
         </div>
       ))}
-    </div>
+    </Reveal>
   );
 }
 
@@ -72,7 +73,7 @@ export default function AboutPage() {
       {/* My Stack */}
       <Section>
         <SectionHeader title="My stack" />
-        <div className="flex flex-wrap gap-2">
+        <Reveal as="div" stagger className="flex flex-wrap gap-2">
           {stack.map((tech) => (
             <span
               key={tech}
@@ -81,7 +82,7 @@ export default function AboutPage() {
               {tech}
             </span>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* Currently Building */}
@@ -90,11 +91,15 @@ export default function AboutPage() {
           title="Currently building"
           action={{ label: "View all", href: "/projects" }}
         />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Reveal
+          as="div"
+          stagger
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+        >
           {building.map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* Latest Writing */}
@@ -103,11 +108,11 @@ export default function AboutPage() {
           title="Latest writing"
           action={{ label: "Read all", href: "/articles" }}
         />
-        <div>
+        <Reveal as="div" stagger>
           {latest.map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}
-        </div>
+        </Reveal>
       </Section>
     </div>
   );
