@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Mail } from "lucide-react";
 import { gsap, useGSAP, EASE, prefersReducedMotion } from "@/lib/gsap";
 import { GooeyButton } from "@/components/anim/gooey-button";
@@ -8,6 +8,7 @@ import { profile } from "@/lib/data";
 
 export function HeroIntro() {
   const scope = useRef<HTMLElement>(null);
+  const [avatarOk, setAvatarOk] = useState(true);
 
   useGSAP(
     () => {
@@ -46,10 +47,26 @@ export function HeroIntro() {
     <section ref={scope} className="flex flex-col items-start">
       <div
         data-hero-avatar
-        className="mb-6 flex size-20 items-center justify-center rounded-full bg-muted text-2xl font-semibold text-muted-foreground"
-        aria-label={`${profile.name}'s avatar`}
+        className="mb-6 size-20 overflow-hidden rounded-full bg-muted"
       >
-        {profile.name.charAt(0)}
+        {profile.avatar && avatarOk ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={profile.avatar}
+            alt={`${profile.name}'s avatar`}
+            width={80}
+            height={80}
+            onError={() => setAvatarOk(false)}
+            className="size-full object-cover"
+          />
+        ) : (
+          <div
+            className="flex size-full items-center justify-center text-2xl font-semibold text-muted-foreground"
+            aria-label={`${profile.name}'s avatar`}
+          >
+            {profile.name.charAt(0)}
+          </div>
+        )}
       </div>
       <h1
         data-hero

@@ -2,8 +2,8 @@
 // Swap these values for your own later — the UI reads everything from here.
 
 export const profile = {
-  name: "John",
-  fullName: "John Doe",
+  name: "Alrizky",
+  fullName: "Alrizky Filardhi Budiman",
   role: "Full-stack developer",
   tagline: "Full-stack developer who loves building things from idea to launch.",
   email: "hi@john.me",
@@ -11,6 +11,7 @@ export const profile = {
   github: "https://github.com",
   githubStars: "11.2k",
   twitter: "https://x.com",
+  instagram: "https://www.instagram.com/richkey.dev/",
 };
 
 export const nav = [
