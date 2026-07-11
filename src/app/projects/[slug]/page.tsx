@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/lib/data";
 import { ProjectCover } from "@/components/project-card";
+import { GlassPanel } from "@/components/glass-surface/GlassPanel";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -27,11 +28,17 @@ export default async function ProjectDetailPage({
         Back to projects
       </Link>
 
-      <ProjectCover
-        color={project.cover}
-        label={project.title}
-        className="mt-6 aspect-[16/9] w-full rounded-xl"
-      />
+      <GlassPanel
+        borderRadius={16}
+        className="mt-6"
+        contentClassName="overflow-hidden rounded-[12px]"
+      >
+        <ProjectCover
+          color={project.cover}
+          label={project.title}
+          className="aspect-[16/9] w-full rounded-[10px]"
+        />
+      </GlassPanel>
 
       <div className="mt-6">
         <span className="text-sm text-muted-foreground">{project.category}</span>
@@ -43,7 +50,11 @@ export default async function ProjectDetailPage({
         </p>
       </div>
 
-      <div className="mt-8 space-y-4 text-muted-foreground">
+      <GlassPanel
+        borderRadius={16}
+        className="mt-8"
+        contentClassName="space-y-4 p-5 text-muted-foreground"
+      >
         <p>
           {project.title} is {project.description.toLowerCase()}. This is a
           placeholder case study — replace it with the real story: the problem,
@@ -53,7 +64,7 @@ export default async function ProjectDetailPage({
           Add screenshots, architecture notes, and links to the live site or
           repository here.
         </p>
-      </div>
+      </GlassPanel>
     </article>
   );
 }

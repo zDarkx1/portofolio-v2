@@ -1,5 +1,6 @@
 // GitHub-style contribution grid — the signature element of the Echo template.
 // Deterministic pattern (no randomness) so server and client render identically.
+import { GlassPanel } from "@/components/glass-surface/GlassPanel";
 
 const WEEKS = 52;
 const DAYS = 7;
@@ -30,7 +31,7 @@ export function ContributionGraph() {
       <h2 className="mb-4 text-sm font-medium text-muted-foreground">
         Contribution Graph
       </h2>
-      <div className="overflow-x-auto rounded-xl border bg-card p-4">
+      <GlassPanel borderRadius={16} contentClassName="overflow-x-auto p-4">
         <div className="flex gap-[3px]">
           {Array.from({ length: WEEKS }).map((_, week) => (
             <div key={week} className="flex flex-col gap-[3px]">
@@ -51,7 +52,7 @@ export function ContributionGraph() {
           ))}
           <span>More</span>
         </div>
-      </div>
+      </GlassPanel>
     </section>
   );
 }
