@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import GlassSurface from "@/components/glass-surface/GlassSurface";
 
 type NowPlayingData = {
   configured: boolean;
@@ -198,8 +199,15 @@ export function NowPlaying() {
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-full rounded-2xl border bg-card p-5 shadow-sm">
-      {children}
-    </div>
+    <GlassSurface
+      width="100%"
+      height="auto"
+      borderRadius={20}
+      backgroundOpacity={0.1}
+      saturation={1.4}
+      className="w-full"
+    >
+      <div className="w-full p-5">{children}</div>
+    </GlassSurface>
   );
 }
