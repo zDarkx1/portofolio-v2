@@ -6,7 +6,7 @@ import { PromoBanner } from "@/components/promo-banner";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { GooFilter } from "@/components/anim/goo-filter";
-import { AuroraBackground } from "@/components/aurora-background";
+import SideRays from "@/components/side-rays/SideRays";
 import { profile } from "@/lib/data";
 
 const geistSans = Geist({
@@ -45,7 +45,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuroraBackground />
+          <div className="pointer-events-none fixed inset-0 -z-10">
+            <SideRays
+              origin="top-right"
+              rayColor1="#1DB954"
+              rayColor2="#96c8ff"
+              speed={2}
+              intensity={1.3}
+              spread={2}
+              saturation={1.5}
+              blend={0.7}
+              falloff={1.6}
+              opacity={0.7}
+            />
+          </div>
           <GooFilter />
           <PromoBanner />
           <Navbar />
