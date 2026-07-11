@@ -90,7 +90,8 @@ function MobileNav({ pathname }: { pathname: string }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const scrolled = useScroll(10);
+  // Contract only after a meaningful scroll (hysteresis: expand back below 70px).
+  const scrolled = useScroll(160, 70);
 
   return (
     <header
