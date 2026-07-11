@@ -10,7 +10,6 @@ import { Section, SectionHeader } from "@/components/section";
 import { ProjectCard } from "@/components/project-card";
 import { ArticleCard } from "@/components/article-card";
 import { Reveal } from "@/components/anim/reveal";
-import { GlassPanel, GlassPill } from "@/components/glass-surface/GlassPanel";
 
 function PosterGrid({
   items,
@@ -20,20 +19,15 @@ function PosterGrid({
   return (
     <Reveal as="div" stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {items.map((item) => (
-        <GlassPanel
+        <div
           key={item.title}
-          borderRadius={14}
-          contentClassName="overflow-hidden rounded-[10px]"
+          className="flex aspect-[3/4] items-end overflow-hidden rounded-xl p-3"
+          style={{ background: item.color }}
         >
-          <div
-            className="flex aspect-[3/4] w-full items-end rounded-[8px] p-3"
-            style={{ background: item.color }}
-          >
-            <span className="text-sm font-medium text-white/90 drop-shadow">
-              {item.title}
-            </span>
-          </div>
-        </GlassPanel>
+          <span className="text-sm font-medium text-white/90 drop-shadow">
+            {item.title}
+          </span>
+        </div>
       ))}
     </Reveal>
   );
@@ -47,24 +41,21 @@ export default function AboutPage() {
     <div>
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">About me</h1>
 
-      <GlassPanel
-        borderRadius={16}
-        className="mt-8"
-        contentClassName="flex aspect-[16/9] items-center justify-center text-muted-foreground"
+      <div
+        className="mt-8 flex aspect-[16/9] w-full items-center justify-center rounded-xl bg-muted text-muted-foreground"
+        aria-label="Person working on laptop"
       >
-        <span className="text-4xl" aria-label="Person working on laptop">
-          {"\u{1F468}‍\u{1F4BB}"}
-        </span>
-      </GlassPanel>
+        <span className="text-4xl">{"\u{1F468}‍\u{1F4BB}"}</span>
+      </div>
 
       {/* Story */}
       <Section>
         <SectionHeader title="Story" />
-        <GlassPanel borderRadius={16} contentClassName="space-y-4 p-5 text-muted-foreground">
+        <div className="space-y-4 text-muted-foreground">
           {aboutStory.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
-        </GlassPanel>
+        </div>
       </Section>
 
       {/* Favorite Movies */}
@@ -84,7 +75,12 @@ export default function AboutPage() {
         <SectionHeader title="My stack" />
         <Reveal as="div" stagger className="flex flex-wrap gap-2">
           {stack.map((tech) => (
-            <GlassPill key={tech}>{tech}</GlassPill>
+            <span
+              key={tech}
+              className="rounded-full border bg-card px-3 py-1.5 text-sm text-muted-foreground"
+            >
+              {tech}
+            </span>
           ))}
         </Reveal>
       </Section>
@@ -112,7 +108,7 @@ export default function AboutPage() {
           title="Latest writing"
           action={{ label: "Read all", href: "/articles" }}
         />
-        <Reveal as="div" stagger className="flex flex-col gap-3">
+        <Reveal as="div" stagger>
           {latest.map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}

@@ -12,7 +12,7 @@ export default function ArticlesPage() {
         Thoughts on building software, from concept through launch.
       </p>
 
-      <Reveal as="div" stagger className="mt-8 flex flex-col gap-3">
+      <Reveal as="div" stagger className="mt-8">
         {articles.map((a) => (
           <ArticleCard key={a.slug} article={a} />
         ))}

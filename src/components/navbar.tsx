@@ -30,6 +30,12 @@ export function Navbar() {
     <header className="sticky top-0 z-40 w-full px-4 pt-3">
       <GlassPanel
         borderRadius={9999}
+        backgroundOpacity={0.04}
+        saturation={1.6}
+        distortionScale={-170}
+        displace={1.2}
+        greenOffset={12}
+        blueOffset={24}
         className="mx-auto max-w-3xl"
         contentClassName="flex items-center justify-between gap-2 px-2"
       >

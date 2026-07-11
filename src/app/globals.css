@@ -74,6 +74,45 @@ body {
   border-radius: 9999px;
 }
 
+/* Animated aurora backdrop — refraction fodder for the glass surfaces */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora__blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: auroraDrift 26s ease-in-out infinite;
+}
+.dark .aurora__blob {
+  opacity: 0.45;
+}
+@keyframes auroraDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(8%, -6%) scale(1.18);
+  }
+  66% {
+    transform: translate(-6%, 7%) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora__blob {
+    animation: none;
+  }
+}
+
 /* Spotify equalizer bars */
 @keyframes eq {
   0%,

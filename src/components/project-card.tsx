@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Project } from "@/lib/data";
-import { GlassPanel } from "@/components/glass-surface/GlassPanel";
 
 export function ProjectCover({
   color,
@@ -29,21 +28,19 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block transition-transform hover:-translate-y-0.5"
+      className="group block overflow-hidden rounded-xl border bg-card transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
-      <GlassPanel borderRadius={16} contentClassName="overflow-hidden rounded-[12px]">
-        <ProjectCover
-          color={project.cover}
-          label={project.title}
-          className="aspect-[16/10] w-full rounded-[10px]"
-        />
-        <div className="p-3">
-          <h3 className="font-medium text-card-foreground">{project.title}</h3>
-          <p className="mt-0.5 text-sm text-muted-foreground">
-            {project.description}
-          </p>
-        </div>
-      </GlassPanel>
+      <ProjectCover
+        color={project.cover}
+        label={project.title}
+        className="aspect-[16/10] w-full"
+      />
+      <div className="p-4">
+        <h3 className="font-medium text-card-foreground">{project.title}</h3>
+        <p className="mt-0.5 text-sm text-muted-foreground">
+          {project.description}
+        </p>
+      </div>
     </Link>
   );
 }

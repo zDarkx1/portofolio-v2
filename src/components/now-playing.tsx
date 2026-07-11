@@ -203,8 +203,13 @@ function Shell({ children }: { children: React.ReactNode }) {
       width="100%"
       height="auto"
       borderRadius={20}
-      backgroundOpacity={0.1}
-      saturation={1.4}
+      backgroundOpacity={0.04}
+      saturation={1.6}
+      distortionScale={-200}
+      displace={1.4}
+      redOffset={0}
+      greenOffset={14}
+      blueOffset={28}
       className="w-full"
     >
       <div className="w-full p-5">{children}</div>

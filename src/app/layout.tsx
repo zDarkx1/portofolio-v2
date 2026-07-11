@@ -6,6 +6,7 @@ import { PromoBanner } from "@/components/promo-banner";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { GooFilter } from "@/components/anim/goo-filter";
+import { AuroraBackground } from "@/components/aurora-background";
 import { profile } from "@/lib/data";
 
 const geistSans = Geist({
@@ -44,6 +45,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AuroraBackground />
           <GooFilter />
           <PromoBanner />
           <Navbar />

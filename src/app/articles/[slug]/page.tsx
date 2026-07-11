@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { articles } from "@/lib/data";
-import { GlassPanel } from "@/components/glass-surface/GlassPanel";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -36,11 +35,7 @@ export default async function ArticleDetailPage({
         </h1>
       </header>
 
-      <GlassPanel
-        borderRadius={16}
-        className="mt-8"
-        contentClassName="space-y-4 p-6 leading-relaxed text-muted-foreground"
-      >
+      <div className="mt-8 space-y-4 leading-relaxed text-muted-foreground">
         <p className="text-lg text-foreground">{article.excerpt}</p>
         <p>
           This is a placeholder article body. Replace it with your real writing —
@@ -49,7 +44,7 @@ export default async function ArticleDetailPage({
         <p>
           Add code blocks, images, and headings to build out the full post.
         </p>
-      </GlassPanel>
+      </div>
     </article>
   );
 }

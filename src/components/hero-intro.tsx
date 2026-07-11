@@ -6,7 +6,6 @@ import { gsap, useGSAP, EASE, prefersReducedMotion } from "@/lib/gsap";
 import { GooeyButton } from "@/components/anim/gooey-button";
 import { Magnetic } from "@/components/anim/magnetic";
 import { XIcon, GithubIcon, InstagramIcon } from "@/components/icons";
-import GlassSurface from "@/components/glass-surface/GlassSurface";
 import { profile } from "@/lib/data";
 
 const socials = [
@@ -54,34 +53,28 @@ export function HeroIntro() {
 
   return (
     <section ref={scope} className="flex flex-col items-start">
-      <div data-hero-avatar className="mb-6">
-        <GlassSurface
-          width={80}
-          height={80}
-          borderRadius={9999}
-          backgroundOpacity={0.12}
-          saturation={1.4}
-          className="overflow-hidden"
-        >
-          {profile.avatar && avatarOk ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={profile.avatar}
-              alt={`${profile.name}'s avatar`}
-              width={72}
-              height={72}
-              onError={() => setAvatarOk(false)}
-              className="size-full rounded-full object-cover"
-            />
-          ) : (
-            <div
-              className="flex size-full items-center justify-center text-2xl font-semibold text-muted-foreground"
-              aria-label={`${profile.name}'s avatar`}
-            >
-              {profile.name.charAt(0)}
-            </div>
-          )}
-        </GlassSurface>
+      <div
+        data-hero-avatar
+        className="mb-6 size-20 overflow-hidden rounded-full bg-muted"
+      >
+        {profile.avatar && avatarOk ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={profile.avatar}
+            alt={`${profile.name}'s avatar`}
+            width={80}
+            height={80}
+            onError={() => setAvatarOk(false)}
+            className="size-full object-cover"
+          />
+        ) : (
+          <div
+            className="flex size-full items-center justify-center text-2xl font-semibold text-muted-foreground"
+            aria-label={`${profile.name}'s avatar`}
+          >
+            {profile.name.charAt(0)}
+          </div>
+        )}
       </div>
       <h1
         data-hero
@@ -102,7 +95,7 @@ export function HeroIntro() {
           {profile.email}
         </GooeyButton>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {socials.map(({ label, href, Icon }) => (
             <Magnetic key={label} strength={0.5}>
               <a
@@ -110,17 +103,9 @@ export function HeroIntro() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="group block text-muted-foreground transition-colors hover:text-foreground"
+                className="inline-flex size-10 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
-                <GlassSurface
-                  width={40}
-                  height={40}
-                  borderRadius={9999}
-                  backgroundOpacity={0.12}
-                  saturation={1.4}
-                >
-                  <Icon className="size-4" />
-                </GlassSurface>
+                <Icon className="size-4" />
               </a>
             </Magnetic>
           ))}
