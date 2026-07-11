@@ -208,8 +208,8 @@ function Shell({ children }: { children: React.ReactNode }) {
       distortionScale={-200}
       displace={1.4}
       redOffset={0}
-      greenOffset={14}
-      blueOffset={28}
+      greenOffset={0}
+      blueOffset={0}
       className="w-full"
     >
       <div className="w-full p-5">{children}</div>

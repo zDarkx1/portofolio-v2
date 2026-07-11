@@ -34,8 +34,9 @@ export function Navbar() {
         saturation={1.6}
         distortionScale={-170}
         displace={1.2}
-        greenOffset={12}
-        blueOffset={24}
+        redOffset={0}
+        greenOffset={0}
+        blueOffset={0}
         className="mx-auto max-w-3xl"
         contentClassName="flex items-center justify-between gap-2 px-2"
       >
