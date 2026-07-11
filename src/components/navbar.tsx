@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { nav, profile } from "@/lib/data";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { GlassPanel } from "@/components/glass-surface/GlassPanel";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -28,18 +27,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full px-4 pt-3">
-      <GlassPanel
-        borderRadius={9999}
-        backgroundOpacity={0.04}
-        saturation={1.6}
-        distortionScale={-170}
-        displace={1.2}
-        redOffset={0}
-        greenOffset={0}
-        blueOffset={0}
-        className="mx-auto max-w-3xl"
-        contentClassName="flex items-center justify-between gap-2 px-2"
-      >
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 shadow-sm backdrop-blur-xl backdrop-saturate-150">
         <div className="flex items-center gap-1">
           {nav.map((item) => {
             const active =
@@ -84,7 +72,7 @@ export function Navbar() {
           </a>
           <ThemeToggle />
         </div>
-      </GlassPanel>
+      </div>
     </header>
   );
 }
