@@ -4,7 +4,15 @@ import { useRef, useState } from "react";
 import { Mail } from "lucide-react";
 import { gsap, useGSAP, EASE, prefersReducedMotion } from "@/lib/gsap";
 import { GooeyButton } from "@/components/anim/gooey-button";
+import { Magnetic } from "@/components/anim/magnetic";
+import { XIcon, GithubIcon, InstagramIcon } from "@/components/icons";
 import { profile } from "@/lib/data";
+
+const socials = [
+  { label: "Instagram", href: profile.instagram, Icon: InstagramIcon },
+  { label: "GitHub", href: profile.github, Icon: GithubIcon },
+  { label: "X", href: profile.twitter, Icon: XIcon },
+];
 
 export function HeroIntro() {
   const scope = useRef<HTMLElement>(null);
@@ -72,12 +80,13 @@ export function HeroIntro() {
         data-hero
         className="text-3xl font-bold tracking-tight sm:text-4xl"
       >
-        Hi, I&apos;m {profile.name}
+        Hi, I&apos;m {profile.fullName}
       </h1>
       <p data-hero className="mt-3 max-w-lg text-muted-foreground">
         {profile.tagline}
       </p>
-      <div data-hero className="mt-5">
+
+      <div data-hero className="mt-6 flex flex-wrap items-center gap-3">
         <GooeyButton
           href={`mailto:${profile.email}`}
           ariaLabel={`Email ${profile.name}`}
@@ -85,6 +94,22 @@ export function HeroIntro() {
           <Mail className="size-4" />
           {profile.email}
         </GooeyButton>
+
+        <div className="flex items-center gap-1">
+          {socials.map(({ label, href, Icon }) => (
+            <Magnetic key={label} strength={0.5}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="inline-flex size-10 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                <Icon className="size-4" />
+              </a>
+            </Magnetic>
+          ))}
+        </div>
       </div>
     </section>
   );
