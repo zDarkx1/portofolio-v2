@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { PromoBanner } from "@/components/promo-banner";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { GooFilter } from "@/components/anim/goo-filter";
@@ -60,7 +59,6 @@ export default function RootLayout({
             />
           </div>
           <GooFilter />
-          <PromoBanner />
           <Navbar />
           <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
             {children}
