@@ -7,7 +7,7 @@ export const profile = {
   domain: "alrizky.me",
   role: "Full-stack developer",
   tagline: "Full-stack developer who loves building things from idea to launch.",
-  email: "alrizky.me",
+  email: "me@alrizky.me",
   avatar: "/avatar.jpg",
   github: "https://github.com/zDarkx1",
   linkedin: "https://www.linkedin.com/in/alrizky/",
