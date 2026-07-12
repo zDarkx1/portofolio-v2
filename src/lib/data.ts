@@ -29,22 +29,7 @@ export type Project = {
   cover: string;
 };
 
-export const projects: Project[] = [
-  { slug: "echo-ui-v3", title: "Echo UI v3", description: "Component library & design system", category: "Featured", cover: "#e2e8f0" },
-  { slug: "justos", title: "JustOS", description: "Productivity OS for Creators", category: "Featured", cover: "#fde68a" },
-  { slug: "happy-stats", title: "Happy Stats", description: "Lightweight analytics dashboard", category: "Featured", cover: "#bbf7d0" },
-  { slug: "cactus-plant", title: "Cactus Plant", description: "Realtime collaboration framework", category: "Open Source", cover: "#a7f3d0" },
-  { slug: "stellar", title: "Stellar", description: "Modern space exploration platform", category: "Personal", cover: "#c7d2fe" },
-  { slug: "neobase", title: "Neobase", description: "Next-generation database solution", category: "Open Source", cover: "#fbcfe8" },
-  { slug: "charter", title: "Charter", description: "Legal services made accessible", category: "Personal", cover: "#fed7aa" },
-  { slug: "echo", title: "Echo", description: "Revolutionary audio platform", category: "Featured", cover: "#ddd6fe" },
-  { slug: "plasma", title: "Plasma", description: "Energy management system", category: "Personal", cover: "#fecaca" },
-  { slug: "scalar", title: "Scalar", description: "API documentation platform", category: "Open Source", cover: "#bae6fd" },
-  { slug: "sonic", title: "Sonic", description: "High-speed data processing", category: "Personal", cover: "#f5d0fe" },
-  { slug: "streamline", title: "Streamline", description: "Workflow automation suite", category: "Featured", cover: "#d9f99d" },
-  { slug: "relative", title: "Relative", description: "Family tree mapping software", category: "Personal", cover: "#fef08a" },
-  { slug: "bloom", title: "Bloom", description: "Sustainable beauty brand", category: "Personal", cover: "#fbcfe8" },
-];
+export const projects: Project[] = [];
 
 export type Article = {
   slug: string;
@@ -54,40 +39,7 @@ export type Article = {
   displayDate: string;
 };
 
-export const articles: Article[] = [
-  {
-    slug: "scaling-a-side-project-to-10k-users",
-    title: "Scaling a side project to 10k users",
-    excerpt:
-      "How a weekend idea grew into a widely used product — lessons about infrastructure, patience, and why “just ship it” only works when you’re ready.",
-    date: "2025-11-04",
-    displayDate: "Nov 4, 2025",
-  },
-  {
-    slug: "why-i-still-love-writing-vanilla-javascript",
-    title: "Why I still love writing vanilla JavaScript",
-    excerpt:
-      "Despite evolving frameworks, I still love plain JavaScript — code that runs instantly in the browser, no setup, no build step.",
-    date: "2025-11-01",
-    displayDate: "Nov 1, 2025",
-  },
-  {
-    slug: "thinking-in-components",
-    title: "Thinking in components",
-    excerpt:
-      "Modern interface building is about systems, not pages. A component-based mindset transforms how you design, code, and even debug.",
-    date: "2025-10-25",
-    displayDate: "Oct 25, 2025",
-  },
-  {
-    slug: "the-cost-of-over-engineering",
-    title: "The cost of over-engineering",
-    excerpt:
-      "A caution against building overly flexible systems — a reminder that clarity often scales better than cleverness.",
-    date: "2025-10-20",
-    displayDate: "Oct 20, 2025",
-  },
-];
+export const articles: Article[] = [];
 
 export type Experience = {
   company: string;

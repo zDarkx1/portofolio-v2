@@ -1,6 +1,4 @@
-import { articles } from "@/lib/data";
-import { ArticleCard } from "@/components/article-card";
-import { Reveal } from "@/components/anim/reveal";
+import { EmptyState } from "@/components/empty-state";
 
 export default function ArticlesPage() {
   return (
@@ -12,11 +10,7 @@ export default function ArticlesPage() {
         Thoughts on building software, from concept through launch.
       </p>
 
-      <Reveal as="div" stagger className="mt-8">
-        {articles.map((a) => (
-          <ArticleCard key={a.slug} article={a} />
-        ))}
-      </Reveal>
+      <EmptyState title="No articles yet" description="Writing coming soon." />
     </div>
   );
 }
