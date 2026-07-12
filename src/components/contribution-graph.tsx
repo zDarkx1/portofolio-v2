@@ -16,12 +16,13 @@ function level(week: number, day: number): number {
   return 4;
 }
 
+// GitHub-style green intensity ramp (empty cell uses the neutral muted token).
 const levelClass = [
   "bg-muted",
-  "bg-foreground/25",
-  "bg-foreground/45",
-  "bg-foreground/70",
-  "bg-foreground",
+  "bg-[#9be9a8]",
+  "bg-[#40c463]",
+  "bg-[#30a14e]",
+  "bg-[#216e39]",
 ];
 
 export function ContributionGraph() {

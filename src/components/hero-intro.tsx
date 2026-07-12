@@ -5,13 +5,13 @@ import { Mail } from "lucide-react";
 import { gsap, useGSAP, EASE, prefersReducedMotion } from "@/lib/gsap";
 import { GooeyButton } from "@/components/anim/gooey-button";
 import { Magnetic } from "@/components/anim/magnetic";
-import { XIcon, GithubIcon, InstagramIcon } from "@/components/icons";
+import { LinkedInIcon, GithubIcon, InstagramIcon } from "@/components/icons";
 import { profile } from "@/lib/data";
 
 const socials = [
   { label: "Instagram", href: profile.instagram, Icon: InstagramIcon },
   { label: "GitHub", href: profile.github, Icon: GithubIcon },
-  { label: "X", href: profile.twitter, Icon: XIcon },
+  { label: "LinkedIn", href: profile.linkedin, Icon: LinkedInIcon },
 ];
 
 export function HeroIntro() {

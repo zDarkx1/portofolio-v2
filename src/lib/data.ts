@@ -4,13 +4,13 @@
 export const profile = {
   name: "Alrizky",
   fullName: "Alrizky Filardhi Budiman",
+  domain: "alrizky.me",
   role: "Full-stack developer",
   tagline: "Full-stack developer who loves building things from idea to launch.",
-  email: "hi@john.me",
+  email: "alrizky.me",
   avatar: "/avatar.jpg",
-  github: "https://github.com",
-  githubStars: "11.2k",
-  twitter: "https://x.com",
+  github: "https://github.com/zDarkx1",
+  linkedin: "https://www.linkedin.com/in/alrizky/",
   instagram: "https://www.instagram.com/richkey.dev/",
 };
 

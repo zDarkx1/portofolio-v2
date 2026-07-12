@@ -8,37 +8,10 @@ import { cn } from "@/lib/utils";
 import { nav, profile } from "@/lib/data";
 import { useScroll } from "@/hooks/use-scroll";
 import { Portal, PortalBackdrop } from "@/components/portal";
-import { XIcon, GithubIcon } from "@/components/icons";
 import { AnimatedThemeToggler } from "@/components/ruixen/animated-theme-toggler";
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
-}
-
-function Socials({ className }: { className?: string }) {
-  return (
-    <div className={cn("flex items-center gap-0.5", className)}>
-      <a
-        href={profile.twitter}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="X (Twitter)"
-        className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <XIcon className="size-4" />
-      </a>
-      <a
-        href={profile.github}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="GitHub"
-        className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <GithubIcon className="size-4" />
-        <span className="font-medium">{profile.githubStars}</span>
-      </a>
-    </div>
-  );
 }
 
 function MobileNav({ pathname }: { pathname: string }) {
@@ -78,9 +51,6 @@ function MobileNav({ pathname }: { pathname: string }) {
                 </Link>
               ))}
             </nav>
-            <div className="mt-8 border-t pt-4">
-              <Socials />
-            </div>
           </div>
         </Portal>
       )}
@@ -109,9 +79,9 @@ export function SiteHeader() {
       >
         <Link
           href="/"
-          className="rounded-md px-1 text-base font-semibold tracking-tight text-foreground"
+          className="rounded-md px-1 font-semibold tracking-tight text-foreground"
         >
-          {profile.name}
+          {profile.domain}
         </Link>
 
         {/* Desktop */}
@@ -132,8 +102,6 @@ export function SiteHeader() {
               </Link>
             ))}
           </div>
-          <span className="mx-1 h-5 w-px bg-border" />
-          <Socials />
           <AnimatedThemeToggler />
         </div>
 
