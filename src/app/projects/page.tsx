@@ -1,4 +1,6 @@
 import { EmptyState } from "@/components/empty-state";
+import { ProjectCard } from "@/components/project-card";
+import { projects } from "@/lib/data";
 
 export default function ProjectsPage() {
   return (
@@ -10,7 +12,15 @@ export default function ProjectsPage() {
         A selection of tools, products, and experiments I&apos;ve built.
       </p>
 
-      <EmptyState title="No projects yet" description="Work in progress — check back soon." />
+      {projects.length > 0 ? (
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      ) : (
+        <EmptyState title="No projects yet" description="Work in progress — check back soon." />
+      )}
     </div>
   );
 }
