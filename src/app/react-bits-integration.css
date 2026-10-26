@@ -1,0 +1,84 @@
+/* Adapt the supplied React Bits components to the portfolio palette. */
+.bits-header { background:transparent; border:0; backdrop-filter:none; }
+.bits-header-inner { width:min(1200px,calc(100% - 64px)); }
+.bits-header .card-nav { max-width:none; }
+.bits-header .card-nav__panel { border:1px solid var(--border); }
+.bits-header .card-nav__bar { gap:12px; }
+.card-nav__actions { display:flex; gap:12px; align-items:center; justify-self:end; }
+.bits-header .card-nav__logo { height:auto; }
+.bits-header .brand-mark { font-size:40px; }
+.bits-header .brand-mark>span { font-size:27px; }
+.bits-header .brand { gap:14px; }
+.bits-header .card-nav__menu { font-size:12px; }
+.bits-header .card-nav__menu-label { min-width:40px; }
+.bits-header .card-nav__cta { font-size:11px; font-weight:450; }
+.bits-header .card-nav__label { font-size:21px; letter-spacing:-.035em; }
+.bits-header .card-nav__link { font-size:13px; }
+.bits-header .card-nav__card:nth-child(2) { background:color-mix(in srgb,var(--heading-accent) 15%,var(--background)); }
+.bits-header .card-nav__card:nth-child(3) { background:color-mix(in srgb,var(--accent) 13%,var(--background)); }
+.bits-header .card-nav__content { max-height:calc(100dvh - 100px); overflow-y:auto; overscroll-behavior:contain; }
+.hero-scene { position:relative; isolation:isolate; --hero-header-height:88px; }
+.garden-hero { position:relative; z-index:1; }
+.hero-gradient { position:absolute; inset:calc(-1 * var(--hero-header-height)) 0 -35px; z-index:-1; pointer-events:none; opacity:.8; mask-image:linear-gradient(to bottom,#000 0%,#000 75%,transparent 100%); }
+.gradient-ascii-container[data-renderer=fallback] { background:radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--ambient-glow) 32%,transparent),transparent 70%); }
+.gradient-ascii-container[data-renderer=fallback] canvas { opacity:0; }
+.portrait-tilt { --tc-shadow-color:#10171050; }
+.portrait-tilt .portrait-frame { width:100%; height:100%; transform:none; aspect-ratio:auto; }
+.portrait-tilt .tilted-card__body { rotate:-3deg; }
+.portrait-tilt .tilted-card__overlay { pointer-events:none; }
+.portrait-depth-label { position:absolute; right:15px; bottom:18px; background:var(--background); color:var(--foreground); border:1px solid var(--border); padding:10px 14px; font-size:10px; box-shadow:3px 5px 0 #00000010; }
+.photo-caption { margin-top:30px; }
+.technology-explorer { display:grid; grid-template-columns:300px 1fr; border:1px solid var(--border); background:color-mix(in srgb,var(--surface-soft) 50%,transparent); --idle-state:paused; }
+.technology-explorer[data-motion-visible=true] { --idle-state:running; }
+html[data-page-hidden=true] .technology-explorer { --idle-state:paused; }
+.technology-tree { padding:30px; border-right:1px solid var(--border); min-height:300px; }
+.tree-path { display:block; color:var(--quiet); font-size:9px; margin-bottom:24px; }
+.technology-stage { min-width:0; }
+.technology-stage-bar { display:flex; justify-content:space-between; gap:20px; border-bottom:1px solid var(--border); padding:18px 25px; font-size:9px; color:var(--quiet); }
+.technology-stage-bar>span:first-child { display:flex; align-items:center; gap:9px; }
+.technology-stage-bar i { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+.technology-stage-content { padding:32px; animation:stack-panel-in .55s cubic-bezier(.22,1,.36,1) both; }
+.technology-symbol { position:relative; display:grid; place-items:center; width:116px; height:90px; font:35px var(--font-geist-mono); color:var(--heading-accent); margin:5px 0 22px; }
+.technology-symbol>span { position:absolute; border:1px dashed var(--border); border-radius:50%; inset:-6px 5px; animation:scene-orbit-turn 18s linear infinite; animation-play-state:var(--idle-state); }
+.technology-symbol>span:last-child { inset:10px -12px; border-color:color-mix(in srgb,var(--accent) 40%,transparent); animation-direction:reverse; animation-duration:26s; }
+.technology-stage h3 { margin:0 0 23px; font-size:28px; font-weight:450; letter-spacing:-.04em; }
+.technology-chips { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.technology-chips>span { display:flex; gap:14px; align-items:center; border:1px solid var(--border); background:var(--background); padding:13px; font-size:12px; animation:stack-panel-in .5s cubic-bezier(.22,1,.36,1) both; }
+.technology-chips .mono { font-size:8px; color:var(--accent); }
+.project-refine { width:100%; height:100%; aspect-ratio:auto; }
+.refine-frame__print { position:relative; }
+.project-refine .refine-frame__chip { font-size:9px; }
+.project-refine .refine-frame__retry { z-index:5; font-size:11px; }
+.preview-image .refine-frame__mosaic { object-fit:cover; }
+.project-cover .project-refine { position:absolute; inset:0; }
+.detail-cover .project-refine { position:absolute; inset:0; }
+.detail-cover .refine-frame__print img { object-fit:contain; }
+@keyframes stack-panel-in { from { opacity:0; translate:0 12px; filter:blur(3px); } to { opacity:1; translate:0 0; filter:blur(0); } }
+@media(max-width:1100px) { .technology-explorer { grid-template-columns:260px 1fr; }.technology-tree { padding:26px; } }
+@media(max-width:760px) {
+  .bits-header-inner { width:calc(100% - 24px); height:72px; }
+  .bits-header .card-nav { --cn-bar:56px!important; --cn-inset:6px!important; }
+  .bits-header .card-nav__bar { gap:5px; }
+  .bits-header .card-nav__actions { gap:7px; }
+  .bits-header .card-nav__menu { padding-inline:10px; font-size:11px; }
+  .bits-header .card-nav__menu-label { min-width:34px; }
+  .bits-header .card-nav__logo { padding-left:8px; }
+  .bits-header .card-nav[data-narrow] .card-nav__actions { grid-column:2; grid-row:1; justify-self:end; }
+  .bits-header .brand-caption { display:none; }
+  .bits-header .card-nav__content { max-height:calc(100dvh - 84px); }
+  .hero-scene { --hero-header-height:72px; }
+  .hero-gradient { opacity:.6; }
+  .portrait-tilt { --portrait-height:clamp(320px,100vw,420px); }
+  .technology-explorer { grid-template-columns:1fr; }
+  .technology-tree { min-height:265px; border-right:0; border-bottom:1px solid var(--border); padding:24px; }
+  .tree-path { margin-bottom:16px; }
+  .technology-stage-content { padding:24px; }
+  .technology-chips { grid-template-columns:1fr 1fr; }
+  .technology-chips>span { font-size:11px; gap:9px; padding:12px 10px; }
+  .technology-stage h3 { font-size:26px; }
+  .technology-symbol { margin-top:0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .technology-stage-content,.technology-chips>span,.technology-symbol>span { animation:none; }
+  .portrait-tilt .tilted-card__body { rotate:0deg; }
+}

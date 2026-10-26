@@ -2,7 +2,7 @@
 
 import {
   useEffect,
-  useState,
+  useSyncExternalStore,
   useRef,
   useId,
   type CSSProperties,
@@ -11,6 +11,12 @@ import {
 import "./GlassSurface.css";
 
 type Channel = "R" | "G" | "B";
+const subscribe = () => () => {};
+function supportsSVGFilters() {
+  if (typeof window === "undefined") return false;
+  if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) || /Firefox/.test(navigator.userAgent)) return false;
+  return CSS.supports("backdrop-filter", "url(#glass-test)");
+}
 
 export type GlassSurfaceProps = {
   children?: ReactNode;
@@ -62,7 +68,7 @@ const GlassSurface = ({
   const redGradId = `red-grad-${uniqueId}`;
   const blueGradId = `blue-grad-${uniqueId}`;
 
-  const [svgSupported, setSvgSupported] = useState(false);
+  const svgSupported = useSyncExternalStore(subscribe, supportsSVGFilters, () => false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const feImageRef = useRef<SVGFEImageElement>(null);
@@ -159,30 +165,6 @@ const GlassSurface = ({
     setTimeout(updateDisplacementMap, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
-
-  useEffect(() => {
-    setSvgSupported(supportsSVGFilters());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const supportsSVGFilters = () => {
-    if (typeof window === "undefined" || typeof document === "undefined") {
-      return false;
-    }
-
-    const isWebkit =
-      /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-    const isFirefox = /Firefox/.test(navigator.userAgent);
-
-    if (isWebkit || isFirefox) {
-      return false;
-    }
-
-    const div = document.createElement("div");
-    div.style.backdropFilter = `url(#${filterId})`;
-
-    return div.style.backdropFilter !== "";
-  };
 
   const containerStyle = {
     ...style,

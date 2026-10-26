@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alrizky — Digital Garden
 
-## Getting Started
+Portofolio editorial dengan visual ASCII Canvas2D, cerita berbasis scroll, dan konten Inggris/Indonesia. Dibangun di Next.js 16 App Router, React 19, TypeScript, Tailwind 4, GSAP, dan Lenis.
 
-First, run the development server:
+## Menjalankan
 
-```bash
+Gunakan Node.js 22.19+ dengan dukungan native TypeScript stripping untuk test.
+
+```powershell
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Untuk preview production:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Port default 3000. Tambahkan `-- --hostname 127.0.0.1 --port 3011` pada perintah dev/start untuk port khusus. Bila output Next terkunci di Windows, hentikan dulu server yang memakai checkout tersebut sebelum membangun ulang.
 
-## Learn More
+## Pengalaman situs
 
-To learn more about Next.js, take a look at the following resources:
+- Hero botanical ASCII dengan orbit, pointer parallax, dan animasi huruf.
+- About dengan foto asli dan transisi dari ASCII di desktop.
+- Selected work: Pactra dan EventTwin, kartu sticky, dan studi kasus lengkap.
+- Teknologi, pendidikan, dan pengalaman dengan data contoh yang ditandai.
+- Partikel ASCII dengan koneksi pointer dan ripple saat klik; ASCII lab dihapus.
+- Glow/tilt kartu, parallax screenshot, reveal judul, scan foto, dan highlight timeline.
+- Kontak dan footer halftone interaktif. Artikel teknis tetap tersedia di `/articles`.
+- Bahasa ID/EN yang tersimpan lokal, keyboard menu, reduced motion, sitemap, dan metadata halaman.
+- Light/dark mode mengikuti sistem atau pilihan tersimpan, dengan transisi circular reveal.
+- Smooth wheel scrolling, magnetic buttons, dan idle motion yang berhenti di luar viewport.
+- Lima komponen React Bits dari lampiran: GradientASCII, TiltedCard, CardNav, RefineFrame, dan BranchedMenu. Detail adaptasi ada di `src/components/react-bits/README.md`.
+- Logo brand asli pada teknologi, proyek, pengalaman, menu, dan sosial. SVG terpilih disinkronkan lewat `npm run icons:sync`; sumber aset tercatat di `public/brands/README.md`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktur
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+src/app/                 Routes, metadata, global styles
+src/components/          Editorial page sections and shared layout
+src/components/ui/       ASCII Canvas, supplied halftone footer, language switcher
+src/lib/data.ts          Identity and verified project data
+src/lib/project-copy.ts  Bilingual project context
+src/lib/field-notes.ts    Bilingual article bodies
+src/lib/resume.ts        Sample education and experience
+src/app/scene-effects.css  Orbit, hover, reveal, and idle effects
+src/lib/ascii-engine.ts  Raster sampling, primitives, and effects
+public/                  Original portrait, botanical source, project screenshots
+tests/                   Renderer math, project content, HTTP route checks
+```
 
-## Deploy on Vercel
+Lihat [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) untuk mengganti isi dan memahami sumber aset. Pendidikan dan pengalaman memiliki section terpisah dengan data contoh di `src/lib/resume.ts`, sesuai permintaan pemilik. Label data contoh dapat dihapus lewat `isSample` setelah data asli diisi. `components.json` memetakan struktur shadcn ke `src/components/ui`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Validasi
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```powershell
+npm run lint
+npm test
+npm run build
+# Jalankan server, lalu di terminal lain:
+$env:TEST_BASE_URL = 'http://127.0.0.1:3000'
+npm run test:pages
+```
+
+Enam test data/renderer dan enam test HTTP memeriksa konten serta route. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
+
+## Spotify (opsional)
+
+Route `/api/now-playing` tetap tersedia untuk pengembangan selanjutnya. Secret tidak diperlukan untuk situs utama. Setup opsional ada di [SPOTIFY_SETUP.md](./SPOTIFY_SETUP.md); jangan masukkan secret ke konten atau kode client.
+
+## Referensi
+
+Komposisi mengambil inspirasi dari [kitna.my.id](https://kitna.my.id/) dengan identitas, susunan visual, dan copy tersendiri. Ink Garden diimplementasikan ulang dari resep serta sumber foto [21st.dev](https://21st.dev/community/ascii) yang diberikan pengguna. Footer diadaptasi dari komponen React lampiran pengguna.

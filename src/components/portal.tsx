@@ -2,15 +2,14 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { createPortal } from "react-dom";
+import { useMounted } from "@/hooks/use-mounted";
 
 // From @efferd/portal. Renders children into document.body and locks body
 // scroll (compensating for the scrollbar) while mounted.
 function Portal({ className, ...props }: React.ComponentProps<"div">) {
-  const [mounted, setMounted] = React.useState(false);
+  const mounted = useMounted();
 
   React.useEffect(() => {
-    setMounted(true);
-
     const originalStyle = window.getComputedStyle(document.body).overflow;
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;

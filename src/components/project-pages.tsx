@@ -1,0 +1,20 @@
+"use client";
+import { RefinedProjectImage } from "@/components/refined-project-image";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { projects, type Project } from "@/lib/data";
+import { projectCopy } from "@/lib/project-copy";
+import { useLanguage } from "@/components/language-provider";
+import { BrandLabel, BrandIcon } from "@/components/brand-icon";
+
+export function ProjectIndex() {
+  const { t, language } = useLanguage();
+  return <div className="page-shell"><span className="page-eyebrow">INDEX / SELECTED WORK</span><h1>{t("Projects.", "Proyek.")}</h1><p className="page-lead">{t("Pactra and EventTwin.", "Pactra dan EventTwin.")}</p><div className="project-index">{projects.map((project, i) => <Link key={project.slug} href={`/projects/${project.slug}`} className="project-card"><div className="project-cover" style={{ position: "relative", aspectRatio: "16/10", background: "#fff", overflow: "hidden" }}><RefinedProjectImage src={project.cover} alt={project.coverAlt} sizes="(max-width:760px) 90vw, 550px" /></div><div className="project-card-body"><span className="mono">0{i + 1} / {t("SELECTED PROJECT", "PROYEK PILIHAN")}</span><h2>{project.title}</h2><p>{language === "en" ? project.description : projectCopy[project.slug].description}</p><div className="project-tags">{project.technologies.slice(0, 4).map((tag) => <BrandLabel key={tag} name={tag} size={15} />)}</div><div className="project-card-bottom">{t("Explore the case study", "Jelajahi studi kasus")}<ArrowUpRight size={20} /></div></div></Link>)}</div></div>;
+}
+
+export function ProjectDetail({ project }: { project: Project }) {
+  const { t, language } = useLanguage();
+  const copy = projectCopy[project.slug];
+  const local = <T extends { en: string; id: string }>(value: T) => value[language];
+  return <article className="page-shell"><Link href="/projects" className="detail-back"><ArrowLeft size={15} />{t("Back to the workbench", "Kembali ke meja kerja")}</Link><div className="detail-title"><span className="page-eyebrow">CASE STUDY / {project.slug.toUpperCase()}</span><h1>{project.title}</h1><p className="page-lead">{language === "en" ? project.description : copy.description}</p></div><div className="detail-cover" style={{ position: "relative", background: "white" }}><RefinedProjectImage src={project.cover} alt={project.coverAlt} sizes="(max-width:760px) 90vw, 1100px" aspectRatio="16 / 9" priority /></div><div className="detail-actions"><a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button button-dark">{t("Visit live site", "Buka situs")}<ArrowUpRight size={17} /></a><a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="button button-outline"><BrandIcon name="GitHub" monochrome />{t("GitHub repository", "Repository GitHub")}<ArrowUpRight size={17} /></a></div><section className="detail-section"><h2>01 / {t("The overview", "Gambaran umum")}</h2><p>{language === "en" ? project.overview : copy.overview}</p></section><section className="detail-section"><h2>02 / {t("The question", "Permasalahannya")}</h2><p>{local(copy.problem)}</p></section><section className="detail-section"><h2>03 / {t("The approach", "Pendekatannya")}</h2><p>{local(copy.approach)}</p></section><section className="detail-section"><h2>04 / {t("What it does", "Yang dikerjakan")}</h2><ul>{(language === "en" ? project.highlights : copy.highlights).map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></section><section className="detail-section"><h2>05 / {t("Built with", "Dibangun dengan")}</h2><div className="detail-tech">{project.technologies.map((technology) => <BrandLabel key={technology} name={technology} size={18} />)}</div></section><section className="detail-section"><h2>06 / {t("Honest boundaries", "Batasan yang jelas")}</h2><p>{local(copy.boundary)}</p></section><Link href="/#contact" className="text-link" style={{ marginTop: 40 }}>{t("Have something similar in mind? Let’s talk.", "Punya ide yang serupa? Mari ngobrol.")}<ArrowUpRight size={16} /></Link></article>;
+}

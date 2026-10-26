@@ -1,11 +1,7 @@
-import { EmptyState } from "@/components/empty-state";
+import type { Metadata } from "next";
+import { DigitalGarden } from "@/components/digital-garden";
+export const metadata: Metadata = { title: "About", description: "About Alrizky Filardhi Budiman, including experience and education.", alternates: { canonical: "/about" } };
 
 export default function AboutPage() {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">About me</h1>
-
-      <EmptyState title="Coming soon" description="This page is being written." />
-    </div>
-  );
+  return <DigitalGarden aboutOnly />;
 }
