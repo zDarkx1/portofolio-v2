@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "branding:sync": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sync-branding.mjs",
     "icons:sync": "node scripts/sync-brand-icons.mjs",
     "dev": "next dev",
     "build": "next build",

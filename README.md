@@ -32,7 +32,9 @@ Port default 3000. Tambahkan `-- --hostname 127.0.0.1 --port 3011` pada perintah
 - Bahasa ID/EN yang tersimpan lokal, keyboard menu, reduced motion, sitemap, dan metadata halaman.
 - Light/dark mode mengikuti sistem atau pilihan tersimpan, dengan transisi circular reveal.
 - Smooth wheel scrolling, magnetic buttons, dan idle motion yang berhenti di luar viewport.
-- Lima komponen React Bits dari lampiran: GradientASCII, TiltedCard, CardNav, RefineFrame, dan BranchedMenu. Detail adaptasi ada di `src/components/react-bits/README.md`.
+- Komponen React Bits aktif: GradientASCII, TiltedCard, RefineFrame, dan BranchedMenu. Detail adaptasi ada di `src/components/react-bits/README.md`.
+- Navbar compact di tengah dari lampiran Hyperiux: header fixed 420 px, panel ringkas dengan timeline GSAP yang dapat dibalik, preview proyek asli, focus trap, Escape/klik di luar, dan scroll lock Lenis.
+- Monogram A asli tersedia di `public/branding` sebagai SVG/PNG. Ubah `src/lib/brand.ts`, lalu jalankan `npm run branding:sync` untuk memperbarui logo dan favicon.
 - Logo brand asli pada teknologi, proyek, pengalaman, menu, dan sosial. SVG terpilih disinkronkan lewat `npm run icons:sync`; sumber aset tercatat di `public/brands/README.md`.
 
 ## Struktur

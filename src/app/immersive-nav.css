@@ -1,0 +1,70 @@
+/* A fixed, centered bar with a compact GSAP menu underneath. */
+html { scrollbar-gutter:stable; }
+.ifn-header-spacer { height:88px; }
+.immersive-header { position:fixed; inset:0 0 auto; height:88px; z-index:100; border:0; background:transparent; backdrop-filter:none; pointer-events:none; }
+.immersive-header-inner { position:relative; z-index:2; width:min(420px,calc(100% - 32px)); height:54px; margin:14px auto 0; padding:6px 14px; gap:20px; border:1px solid var(--border); border-radius:12px; background:color-mix(in srgb,var(--background) 94%,transparent); backdrop-filter:blur(18px); box-shadow:0 6px 28px #0000000a; pointer-events:auto; }
+.ifn-brand { display:inline-flex; align-items:center; gap:8px; color:#0b0b0b; flex-shrink:0; }
+.dark .ifn-brand { color:#f2f1ec; }
+.ifn-brand-mark { display:block; width:29px; height:29px; }
+.ifn-brand-name { font-size:15px; font-weight:600; letter-spacing:-.065em; }
+.ifn-header-actions { display:flex; align-items:center; gap:12px; }
+.ifn-header-actions .language-switcher { padding:2px; }
+.ifn-header-actions .language-switcher button { min-width:26px; min-height:25px; font-size:9px; }
+.ifn-header-actions .theme-toggle { width:30px; height:30px; }
+.ifn-toggle { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:38px; min-width:66px; padding:5px 0 5px 5px; background:none; border:0; color:var(--foreground); }
+.ifn-toggle-label { font-size:11px; }
+.ifn-toggle-icon { display:grid; place-items:center; width:20px; height:20px; }
+.ifn-panel { position:fixed; inset:0; z-index:1; display:flex; justify-content:center; align-items:flex-start; padding:84px 20px 20px; overflow-y:auto; overscroll-behavior:contain; touch-action:pan-y; background:#00000024; backdrop-filter:blur(5px); color:var(--foreground); pointer-events:auto; }
+.ifn-panel-content { width:min(660px,100%); max-height:calc(100dvh - 104px); padding:24px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; overscroll-behavior:contain; background:var(--background); border:1px solid var(--border); border-radius:14px; box-shadow:0 20px 70px #00000024; }
+.ifn-panel-heading { display:flex; justify-content:space-between; gap:20px; padding-bottom:14px; border-bottom:1px solid var(--border); font-size:8px; text-transform:uppercase; color:var(--quiet); }
+.ifn-panel-heading>span:last-child { text-align:right; }
+.ifn-panel-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:30px; align-items:center; }
+.ifn-links { display:grid; gap:5px; }
+.ifn-link { display:flex; align-items:center; gap:12px; width:fit-content; padding:5px 0; font-size:30px; line-height:1.12; letter-spacing:-.055em; }
+.ifn-link-number { flex-shrink:0; font-size:8px; color:var(--quiet); }
+.ifn-link-word { display:block; overflow:hidden; white-space:nowrap; padding-bottom:.12em; margin-bottom:-.12em; }
+.ifn-link-word>span { display:inline-block; text-shadow:0 1.2em currentColor; transition:transform .5s cubic-bezier(.625,.05,0,1); }
+.ifn-link:hover .ifn-link-word>span,.ifn-link:focus-visible .ifn-link-word>span { transform:translateY(-1.2em); }
+.ifn-link>svg { width:17px; height:17px; opacity:0; color:var(--accent); transform:translate(-5px,5px); transition:opacity .3s,transform .3s; }
+.ifn-link:hover>svg,.ifn-link:focus-visible>svg { opacity:1; transform:none; }
+.ifn-projects { display:grid; gap:12px; }
+.ifn-projects-label { font-size:8px; color:var(--quiet); text-transform:uppercase; letter-spacing:.08em; }
+.ifn-project { display:block; min-width:0; padding:5px; border:1px solid var(--border); background:var(--surface-soft); border-radius:5px; }
+.ifn-project-image { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--muted); border-radius:2px; }
+.ifn-project-image img { object-fit:cover; object-position:top; transition:scale .5s; }
+.ifn-project:hover img { scale:1.025; }
+.ifn-project>span { display:flex; justify-content:space-between; align-items:center; padding:7px 3px 2px; font-size:10px; }
+.ifn-panel-footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; padding-top:15px; border-top:1px solid var(--border); }
+.ifn-email { display:inline-flex; align-items:center; gap:10px; font-size:13px; letter-spacing:-.025em; }
+.ifn-socials { display:flex; flex-wrap:wrap; gap:14px; }
+.ifn-socials>a { display:inline-flex; align-items:center; gap:6px; font-size:10px; }
+.ifn-socials>a>svg { color:var(--quiet); }
+.skip-link { z-index:120; }
+@media(max-width:760px) { .ifn-header-spacer,.immersive-header { height:72px; } }
+@media(max-width:600px) {
+  .ifn-header-spacer,.immersive-header { height:72px; }
+  .immersive-header-inner { margin-top:10px; height:50px; padding:5px 12px; gap:16px; }
+  .ifn-brand-name { display:none; }.ifn-brand-mark { width:28px; height:28px; }
+  .ifn-header-actions { gap:12px; }
+  .ifn-panel { padding:72px 16px 16px; }
+  .ifn-panel-content { padding:20px; gap:18px; max-height:calc(100dvh - 88px); }
+  .ifn-panel-heading { font-size:7px; gap:12px; padding-bottom:12px; }
+  .ifn-panel-grid { grid-template-columns:1fr; gap:20px; }
+  .ifn-links { grid-template-columns:1fr 1fr; gap:7px 14px; }
+  .ifn-link { padding-block:6px; font-size:clamp(20px,5.8vw,27px); gap:8px; }
+  .ifn-link-number { font-size:7px; }.ifn-link>svg { display:none; }
+  .ifn-projects { grid-template-columns:1fr 1fr; gap:10px; }.ifn-projects-label { grid-column:1/-1; }
+  .ifn-panel-footer { gap:16px; }.ifn-email { font-size:13px; }.ifn-socials { gap:17px; }
+}
+@media(max-width:360px) {
+  .ifn-header-actions { gap:8px; }.immersive-header-inner { padding-inline:10px; }
+  .ifn-panel-content { padding:16px; }.ifn-link { font-size:19px; gap:6px; }
+  .ifn-links { grid-template-columns:1fr; gap:3px; }
+  .ifn-socials { gap:12px; }
+}
+@media(max-height:580px) and (min-width:601px) { .ifn-project-image { aspect-ratio:2.4; }.ifn-panel-content { gap:14px; padding:20px; }.ifn-link { font-size:27px; } }
+@media(prefers-reduced-motion:reduce) {
+  .ifn-link-word>span { transition:none; }
+  .ifn-link:hover .ifn-link-word>span,.ifn-link:focus-visible .ifn-link-word>span { transform:none; }
+  .ifn-project:hover img { scale:1; }
+}

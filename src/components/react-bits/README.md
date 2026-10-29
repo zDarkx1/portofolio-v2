@@ -6,7 +6,7 @@ These five components came from the owner's pasted React Bits sources. They reta
 | --- | --- | --- |
 | GradientASCII | Hero background | Earth-tone theme palettes, DPR 1.25 at the call site, 30 fps cap, visibility/reduced-motion handling, CSS fallback if WebGL2 fails |
 | TiltedCard | Real profile photo | Floating, glare, layered name plate; gyroscope and flip disabled; visibility cleanup |
-| CardNav | Header | Next Link, existing Lucide icons, language/theme action slot, ID/EN labels, Escape/outside click/Tab handling |
+| CardNav | Previous header, retained source | Superseded by the owner's immersive fullscreen navigation attachment in `src/components/ui/immersive-full-screen-nav.tsx` |
 | RefineFrame | Project screenshots | Actual image load/error states, retry, descriptive image label, stable canvas dimensions during tilt, visibility cleanup |
 | BranchedMenu | Technology selector | Existing Lucide elements, three real technology groups, animated branches, keyboard-operable buttons |
 

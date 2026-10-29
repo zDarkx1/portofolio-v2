@@ -41,9 +41,9 @@ Logo brand dipakai pada hero/ticker, teknologi, tag proyek, pengalaman, menu, so
 
 ## Interaksi scroll
 
-Kelima lampiran React Bits dipakai: GradientASCII menjadi latar hero; TiltedCard membungkus foto; CardNav menggantikan header; RefineFrame menampilkan proses muat screenshot; BranchedMenu memilih kelompok teknologi. Sumber JavaScript/CSS dipertahankan dengan deklarasi TypeScript dan penyesuaian lifecycle. Ikon memakai Lucide yang sudah tersedia. CardNav tetap menyediakan akses pendidikan/pengalaman, bahasa, dan tema. Tidak ada section ASCII lab baru.
+GradientASCII menjadi latar hero; TiltedCard membungkus foto; RefineFrame menampilkan proses muat screenshot; BranchedMenu memilih kelompok teknologi. Header kini memakai lampiran immersive fullscreen Hyperiux di `src/components/ui/immersive-full-screen-nav.tsx`. Panel memuat enam tautan section, preview Pactra/EventTwin, dan sosial dengan logo asli. Kontrol bahasa dan tema ada di header. Focus trap, Escape, dan scroll lock terhubung dengan Lenis.
 
-Hero botanical memiliki parallax ringan. Ticker berpindah mengikuti scroll. Potret beralih dari ASCII ke foto di desktop, kartu proyek memakai sticky stacking, dan timeline pengalaman memiliki garis progress. GSAP memakai matchMedia dan cleanup saat navigasi atau perubahan bahasa. Pengaturan reduced-motion menghilangkan gerak dan mempertahankan konten. Manifesto, proses generik, dan daftar catatan di homepage sudah dihapus agar isi lebih langsung.
+Hero botanical memiliki parallax ringan. Label FERN/ASCII dan PERSONAL PORTFOLIO, frame Canvas 2D, ticker teknologi, deskripsi teknologi hero, dan ornamen orbit sudah dihapus. Potret beralih dari ASCII ke foto di desktop, kartu proyek memakai sticky stacking, dan timeline pengalaman memiliki garis progress. GSAP memakai matchMedia dan cleanup saat navigasi atau perubahan bahasa. Pengaturan reduced-motion menghilangkan gerak dan mempertahankan konten. Manifesto, proses generik, dan daftar catatan di homepage sudah dihapus agar isi lebih langsung.
 
 Section ASCII lab dan seluruh kontrolnya sudah dihapus sesuai permintaan pemilik. Renderer Ink Garden tetap dipakai pada hero dan foto. Hero dan portrait memakai variasi monochrome agar menyatu dengan komposisi. Canvas dibatasi DPR dan frame rate, sampling dilakukan ketika sumber/ukuran berubah, dan animasi berhenti di luar viewport atau saat tab tersembunyi.
 
@@ -71,7 +71,7 @@ Node 22.19 atau runtime yang mendukung native TypeScript stripping digunakan unt
 
 ### Latar hero selebar layar
 
-GradientASCII dipindahkan dari `.garden-hero.container` ke wrapper `.hero-scene` yang selebar halaman. Latar naik sebesar tinggi header (88 px desktop / 72 px mobile), sehingga mulai pada koordinat halaman x=0, y=0 dan berada di belakang CardNav. Mask hanya memudarkan bagian bawah. Konten tetap memakai container; background tidak menambah lebar scroll.
+GradientASCII dipindahkan dari `.garden-hero.container` ke wrapper `.hero-scene` yang selebar halaman. Latar naik sebesar tinggi header (88 px desktop / 72 px mobile), sehingga mulai pada koordinat halaman x=0, y=0 dan berada di belakang navbar. Mask hanya memudarkan bagian bawah. Konten tetap memakai container; background tidak menambah lebar scroll.
 
 Build/TypeScript, lint, dan 6 test HTTP lulus setelah perubahan. Browser mengukur latar desktop dari x=0/y=0 selebar sekitar 1265 px; mobile juga x=0/y=0 selebar sekitar 375 px. Light/dark diperiksa tanpa overflow horizontal atau error/warning console. Screenshot: `artifacts/portfolio-hero-fullwidth.jpg` dan `artifacts/portfolio-hero-fullwidth-mobile-light.jpg`.
 
@@ -81,7 +81,7 @@ Build/TypeScript, lint, dan 6 test HTTP lulus setelah perubahan. Browser menguku
 
 Lint, production build/TypeScript, 6 test data/renderer, dan 6 test HTTP lulus. Browser memeriksa logo frontend pada light/dark (termasuk Next.js yang mengikuti warna tinta), kelompok backend dan motion, PNG Lenis yang berhasil dimuat, serta tujuh logo stack Pactra termasuk Foundry pada mobile. Tidak ditemukan overflow horizontal pada desktop 1280 px dan viewport mobile 390 × 844. Screenshot: `artifacts/portfolio-brand-icons-light.jpg` dan `artifacts/portfolio-brand-icons-dark.jpg`.
 
-### Integrasi lima lampiran React Bits
+### Catatan validasi integrasi awal lima lampiran React Bits
 
 Kelima komponen dipakai langsung pada halaman. Build/TypeScript, lint, 6 test data/renderer, dan 6 test HTTP lulus. Browser memverifikasi GradientASCII dengan renderer WebGL, buka/tutup CardNav dan Escape, tautan Pendidikan mobile pada offset sekitar 90 px, pergantian ID/EN serta light/dark, tiga pilihan BranchedMenu, TiltedCard dengan foto asli dan transform matrix3d, serta RefineFrame pada studi kasus Pactra sampai `complete` dan `data-resolved`.
 
@@ -118,3 +118,13 @@ Pemeriksaan penyempurnaan ini: light/dark tersimpan setelah reload, tinta ASCII 
 - ID/EN, penyimpanan bahasa ketika pindah halaman, artikel, studi kasus, pause, ukuran sel, pergantian foto, reset, menu mobile/Escape, dan salin email diperiksa di browser.
 - Layout diperiksa pada viewport desktop default dan override mobile 390 × 844. Tidak ditemukan overflow horizontal dalam pengukuran lebar dokumen. Override viewport dikembalikan setelah pengujian.
 - Screenshot lokal disimpan di `artifacts/`. Pemeriksaan mobile memakai viewport browser, bukan perangkat fisik. Belum ada pengukuran Core Web Vitals produksi atau validasi deployment publik.
+
+## Navbar compact dan monogram A
+
+Navbar memakai lampiran Hyperiux, diadaptasi di `src/components/ui/immersive-full-screen-nav.tsx`; tautan dan konten ada di `src/components/site-header.tsx`, styling di `src/app/immersive-nav.css`. Bar fixed memiliki lebar maksimum 420 px di tengah, dengan panel 660 px di bawahnya. Spacer 88 px desktop / 72 px mobile menjaga posisi background hero. Scroll lock hanya mengubah overflow elemen html; body tidak dibuat scroll container baru. Tombol tutup tetap terjangkau setelah scroll halaman. Satu timeline GSAP dapat diputar maju/mundur agar klik cepat tidak meninggalkan callback animasi lama. Pada layar kecil, label tidak terpotong dan panel dapat digulir. Semua section utama dapat diakses, dengan preview proyek asli, sosial, ID/EN, dan pengaturan tema. Navigasi section menunggu animasi tutup selesai, kemudian memakai scroll controller Lenis yang sama dengan halaman.
+
+Logo A geometris hitam berasal dari `src/lib/brand.ts` dan dipakai oleh `BrandMark`. Ekspor SVG/PNG transparan tersedia di `public/branding`; `npm run branding:sync` memperbarui ekspor, favicon, ikon SVG aplikasi, dan Apple icon. Header menyesuaikan warna logo pada tema gelap.
+
+Validasi integrasi awal 2026-10-29: production build/TypeScript dan lint komponen baru lulus, 12 tes data/renderer/HTTP lulus, dan lima endpoint aset branding mengembalikan HTTP 200 dengan tipe gambar yang benar. Browser kembali tersedia pada pemeriksaan perbaikan navbar: bug header keluar viewport direproduksi dari posisi scroll, lalu diperbaiki. Delapan klik toggle, double-click cepat, Escape, klik di luar, focus trap Tab/Shift+Tab, dan navigasi Pendidikan telah diperiksa. Tema terang/gelap dan viewport desktop 1280 px serta mobile 390 px diperiksa tanpa overflow horizontal.
+
+Validasi akhir navbar compact: production build/TypeScript, lint, 6 tes data/renderer, dan 6 tes HTTP lulus. Pada viewport 320 × 568, panel dapat digulir tanpa memindahkan tombol tutup dan tanpa overflow horizontal. Build produksi juga diperiksa dari posisi scroll sekitar 1463 px; tombol tutup tetap pada y=22 px. Background hero tetap bermula di x=0, y=0. Screenshot produksi: `artifacts/portfolio-compact-navbar.png`.

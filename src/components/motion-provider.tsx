@@ -2,12 +2,40 @@
 
 import Lenis from "lenis";
 import { usePathname } from "next/navigation";
-import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useLanguage } from "@/components/language-provider";
 
-const MotionContext = createContext({ scrollToTop: () => window.scrollTo({ top: 0, behavior: "smooth" }) });
+const MotionContext = createContext<{
+  scrollToTop: () => void;
+  scrollToSection: (hash: string) => boolean;
+  setScrollLocked: (locked: boolean) => void;
+}>({
+  scrollToTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+  scrollToSection: () => false,
+  setScrollLocked: () => {},
+});
 export const useGardenMotion = () => useContext(MotionContext);
+
+function scrollToHash(lenis: Lenis | null, hash: string, keyboard = false) {
+  let id: string;
+  try { id = decodeURIComponent(hash.slice(1)); } catch { return false; }
+  const target = document.getElementById(id);
+  if (!target) return false;
+  if (location.hash !== hash) history.pushState(null, "", hash);
+  const header = document.querySelector(".header-inner")?.getBoundingClientRect().height ?? 88;
+  const padding = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const focus = () => {
+    if (!keyboard) return;
+    const hadTabIndex = target.hasAttribute("tabindex");
+    if (!hadTabIndex) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
+    if (!hadTabIndex) target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+  };
+  if (lenis) lenis.scrollTo(target, { offset: padding - header - 18, duration: 1.15, lerp: 0, easing: (t) => 1 - Math.pow(1 - t, 4), onComplete: focus });
+  else { target.scrollIntoView(); focus(); }
+  return true;
+}
 
 export function MotionProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -37,31 +65,10 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     const onAnchor = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const anchor = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
-      if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+      if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download") || anchor.closest("[data-fullscreen-nav]") || anchor.closest('[data-menu-open="true"]')) return;
       const url = new URL(anchor.href, window.location.href);
       if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search || !url.hash || url.hash === "#main") return;
-      let id: string;
-      try { id = decodeURIComponent(url.hash.slice(1)); } catch { return; }
-      const target = document.getElementById(id);
-      if (!target) return;
-      event.preventDefault();
-      if (location.hash !== url.hash) history.pushState(null, "", url.hash);
-      const header = document.querySelector(".header-inner")?.getBoundingClientRect().height ?? 88;
-      // Lenis already includes CSS scroll-padding; only compensate the difference.
-      const padding = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
-      lenis.scrollTo(target, {
-        offset: padding - header - 18,
-        duration: 1.15,
-        lerp: 0,
-        easing: (t) => 1 - Math.pow(1 - t, 4),
-        onComplete: () => {
-          if (event.detail !== 0) return;
-          const hadTabIndex = target.hasAttribute("tabindex");
-          if (!hadTabIndex) target.tabIndex = -1;
-          target.focus({ preventScroll: true });
-          if (!hadTabIndex) target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
-        },
-      });
+      if (scrollToHash(lenis, url.hash, event.detail === 0)) event.preventDefault();
     };
     const onVisibility = () => { if (!document.hidden) { lenis.resize(); lenis.scrollTo(window.scrollY, { immediate: true, force: true }); } };
     const onPopState = () => { restoringHistory.current = true; };
@@ -93,7 +100,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
       } else instance.current?.scrollTo(window.scrollY, { immediate: true, force: true });
       ScrollTrigger.refresh();
     });
-    const zones = document.querySelectorAll<HTMLElement>(".garden-hero, .hero-visual, .ability, .technology-explorer, .portrait-column, .contact-section, .scroll-ticker, .brand");
+    const zones = document.querySelectorAll<HTMLElement>(".garden-hero, .hero-visual, .ability, .technology-explorer, .portrait-column, .contact-section, .brand");
     const observer = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
       (target as HTMLElement).dataset.motionVisible = String(isIntersecting);
     }), { rootMargin: "40px" });
@@ -125,5 +132,9 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     if (instance.current) instance.current.scrollTo(0, { duration: 1.25, lerp: 0, easing: (t) => 1 - Math.pow(1 - t, 4) });
     else window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }
-  return <MotionContext.Provider value={{ scrollToTop }}>{children}</MotionContext.Provider>;
+  const setScrollLocked = useCallback((locked: boolean) => {
+    if (locked) instance.current?.stop(); else instance.current?.start();
+  }, []);
+  const scrollToSection = useCallback((hash: string) => scrollToHash(instance.current, hash, true), []);
+  return <MotionContext.Provider value={{ scrollToTop, scrollToSection, setScrollLocked }}>{children}</MotionContext.Provider>;
 }

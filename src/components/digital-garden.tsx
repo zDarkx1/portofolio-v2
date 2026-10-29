@@ -37,7 +37,6 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
         gsap.fromTo(element, { y: 28, opacity: .12 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 92%", once: true } });
       });
       gsap.to(".hero-art", { y: 75, rotate: 4, ease: "none", scrollTrigger: { trigger: ".garden-hero", start: "top top", end: "bottom top", scrub: .8 } });
-      gsap.to(".scroll-ticker-inner", { xPercent: -14, ease: "none", scrollTrigger: { trigger: ".scroll-ticker", start: "top bottom", end: "bottom top", scrub: .75 } });
       gsap.to(".reading-progress", { scaleX: 1, transformOrigin: "left", ease: "none", scrollTrigger: { trigger: root.current, start: "top top", end: "bottom bottom", scrub: true } });
       gsap.fromTo(".hero-letter", { yPercent: 115, rotate: 8 }, { yPercent: 0, rotate: 0, duration: 1.1, stagger: .055, delay: .15, ease: "power4.out", clearProps: "transform" });
       gsap.utils.toArray<HTMLElement>(".section-label").forEach((label) => {
@@ -79,14 +78,7 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
         card.addEventListener("pointerenter", enter); card.addEventListener("pointermove", move); card.addEventListener("pointerleave", leave);
         cleanup.push(() => { card.removeEventListener("pointerenter", enter); card.removeEventListener("pointermove", move); card.removeEventListener("pointerleave", leave); delete card.dataset.tiltReady; delete card.dataset.hovered; card.style.removeProperty("--pointer-x"); card.style.removeProperty("--pointer-y"); });
       });
-      const visual = root.current?.querySelector<HTMLElement>(".hero-visual");
-      if (!visual) return () => cleanup.forEach((dispose) => dispose());
-      const x = gsap.quickTo(".hero-orbit-scene", "x", { duration: 1.2, ease: "power3.out" });
-      const y = gsap.quickTo(".hero-orbit-scene", "y", { duration: 1.2, ease: "power3.out" });
-      const move = (event: PointerEvent) => { const box = visual.getBoundingClientRect(); x((event.clientX - box.left - box.width / 2) * .055); y((event.clientY - box.top - box.height / 2) * .045); };
-      const leave = () => { x(0); y(0); };
-      visual.addEventListener("pointermove", move); visual.addEventListener("pointerleave", leave);
-      return () => { cleanup.forEach((dispose) => dispose()); visual.removeEventListener("pointermove", move); visual.removeEventListener("pointerleave", leave); };
+      return () => cleanup.forEach((dispose) => dispose());
     });
     return () => { media.revert(); if (copyTimer.current) clearTimeout(copyTimer.current); };
   }, { scope: root, dependencies: [language, aboutOnly], revertOnUpdate: true });
@@ -102,29 +94,20 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
     <div className="hero-scene">
       <HeroGradient />
     <section className="garden-hero container" id="top">
-      <div className="hero-eyebrow"><span className="status-dot" /> {t("PERSONAL PORTFOLIO", "PORTOFOLIO PERSONAL")}<span className="hero-edition">2026</span></div>
       <div className="hero-grid">
         <div className="hero-copy">
           <p className="mono hero-intro">{t("HELLO, I’M", "HALO, SAYA")}<span className="terminal-caret" aria-hidden="true">_</span></p>
-          <h1 aria-label="Alrizky"><span className="hero-name" aria-hidden="true">{Array.from("Alrizky").map((letter, index) => <span className="hero-letter" key={index} style={{ animationDelay: `${index * .065}s` }}>{letter}</span>)}<span className="hero-name-period">.</span></span><span className="hero-asterisk" aria-hidden="true">✳</span></h1>
+          <h1 aria-label="Alrizky"><span className="hero-name" aria-hidden="true">{Array.from("Alrizky").map((letter, index) => <span className="hero-letter" key={index} style={{ animationDelay: `${index * .065}s` }}>{letter}</span>)}<span className="hero-name-period">.</span></span></h1>
           <p className="hero-role">Full-stack <em>developer.</em></p>
-          <p className="hero-description">{t("Building web applications with ", "Membangun aplikasi web dengan ")}<BrandLabel name="React" size={15} />, <BrandLabel name="Next.js" size={15} />{t(", and ", ", dan ")}<BrandLabel name="Go" size={18} />.</p>
           <div className="hero-ctas"><Link href="/#work" className="button button-dark">{t("View projects", "Lihat proyek")}<ArrowDownRight size={18} /></Link><a href="#experience" className="text-link">{t("Experience", "Pengalaman")}<ArrowRight size={16} /></a></div>
         </div>
         <div className="hero-visual">
-          <div className="hero-orbit-scene" aria-hidden="true"><div className="hero-orbit orbit-outer"><i /><i /></div><div className="hero-orbit orbit-inner"><i /></div><div className="hero-axis axis-x" /><div className="hero-axis axis-y" /><span className="orbit-tag tag-ui">{`< UI />`}</span><span className="orbit-tag tag-api">{`{ API }`}</span><span className="orbit-cross">+</span></div>
-          <div className="hero-corner tl" /><div className="hero-corner tr" /><div className="hero-corner bl" /><div className="hero-corner br" />
-          <div className="ambient-glyphs" aria-hidden="true"><span>+</span><span>[ ]</span><span>*</span><span>0x1</span><span>:</span><span>./</span></div>
-          <span className="visual-coordinate mono">FERN / ASCII</span>
           <div className="hero-art-drift"><AsciiCanvas className="hero-art" alt={t("Animated ASCII fern", "Pakis ASCII bergerak")} settings={{ renderMode: "characters", cellSize: 5, ink: "var(--ascii-ink)", contrast: 60, density: 70, animStyle: "wave", grayscale: 100, toneCurve: [{ x: 0, y: 0 }, { x: .022, y: 0 }, { x: .15, y: .68 }, { x: .55, y: 1 }, { x: 1, y: 1 }] }} scrollDriven /></div>
-          <div className="visual-caption"><span className="ascii-caption-icon">{`{ * }`}</span><span className="mono">CANVAS 2D</span></div>
         </div>
       </div>
       <div className="hero-bottom"><span className="mono">{profile.fullName.toUpperCase()}</span><a href="#about" className="mono scroll-cue">SCROLL<ArrowDown size={15} /></a><span className="mono hero-year">[ 01 — 06 ]</span></div>
     </section>
     </div>
-
-    <div className="scroll-ticker" aria-hidden="true"><div className="scroll-ticker-inner">{Array.from({ length: 4 }, (_, i) => <span key={i}>{["React", "Next.js", "TypeScript", "Go", "Canvas 2D"].map((brand) => <span className="ticker-brand" key={brand}><BrandLabel name={brand} size={16} /><b>✳</b></span>)}</span>)}</div></div>
 
     <section className="about-section container section-space" id="about">
       <SectionLabel number="01">{t("ABOUT", "TENTANG")}</SectionLabel>

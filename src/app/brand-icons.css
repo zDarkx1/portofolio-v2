@@ -7,12 +7,9 @@
 .brand-image-lenis { border-radius:3px; }
 .brand-image-foundry { border-radius:50%; }
 .brand-label-text { min-width:0; }
-.hero-description .brand-label { gap:5px; vertical-align:-.12em; color:var(--foreground); }
 .project-tags>.brand-label,.resume-tags>.brand-label,.detail-tech>.brand-label { gap:7px; }
 .technology-chips>.brand-label { gap:13px; min-height:53px; }
 .technology-chips .brand-icon { flex-basis:var(--brand-size); }
-.scroll-ticker-inner .ticker-brand { display:inline-flex; align-items:center; }
-.scroll-ticker-inner .brand-label { gap:9px; text-transform:uppercase; }
 .contact-socials { flex-wrap:wrap; gap:16px 24px; }
 .contact-socials .brand-label { gap:7px; }
 .card-nav__brand { display:inline-flex; align-items:center; width:16px; flex-shrink:0; }
@@ -22,5 +19,4 @@
   .brand-label { gap:6px; }
   .technology-chips>.brand-label { gap:9px; min-height:50px; }
   .contact-socials { gap:17px 19px; }
-  .hero-description .brand-label { gap:4px; }
 }

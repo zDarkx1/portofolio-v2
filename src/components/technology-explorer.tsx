@@ -33,7 +33,7 @@ export function TechnologyExplorer() {
     <div className="technology-stage" role="region" aria-label={t("Selected technology group", "Kelompok teknologi terpilih")} aria-live="polite">
       <div className="technology-stage-bar mono"><span><i />{current.id}.tsx</span><span>{String(groups.indexOf(current) + 1).padStart(2, "0")} / 03</span></div>
       <div className="technology-stage-content" key={current.id}>
-        <div className="technology-symbol" aria-hidden="true">{current.ascii}<span /><span /></div>
+        <div className="technology-symbol" aria-hidden="true">{current.ascii}</div>
         <h3>{current.title[language]}</h3>
         <div className="technology-chips">{current.tags.map((tag, index) => <BrandLabel name={tag} size={23} key={tag} style={{ animationDelay: `${index * .06}s` }} />)}</div>
       </div>

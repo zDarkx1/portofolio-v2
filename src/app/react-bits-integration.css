@@ -39,8 +39,6 @@ html[data-page-hidden=true] .technology-explorer { --idle-state:paused; }
 .technology-stage-bar i { width:5px; height:5px; border-radius:50%; background:var(--accent); }
 .technology-stage-content { padding:32px; animation:stack-panel-in .55s cubic-bezier(.22,1,.36,1) both; }
 .technology-symbol { position:relative; display:grid; place-items:center; width:116px; height:90px; font:35px var(--font-geist-mono); color:var(--heading-accent); margin:5px 0 22px; }
-.technology-symbol>span { position:absolute; border:1px dashed var(--border); border-radius:50%; inset:-6px 5px; animation:scene-orbit-turn 18s linear infinite; animation-play-state:var(--idle-state); }
-.technology-symbol>span:last-child { inset:10px -12px; border-color:color-mix(in srgb,var(--accent) 40%,transparent); animation-direction:reverse; animation-duration:26s; }
 .technology-stage h3 { margin:0 0 23px; font-size:28px; font-weight:450; letter-spacing:-.04em; }
 .technology-chips { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
 .technology-chips>span { display:flex; gap:14px; align-items:center; border:1px solid var(--border); background:var(--background); padding:13px; font-size:12px; animation:stack-panel-in .5s cubic-bezier(.22,1,.36,1) both; }
@@ -79,6 +77,6 @@ html[data-page-hidden=true] .technology-explorer { --idle-state:paused; }
   .technology-symbol { margin-top:0; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .technology-stage-content,.technology-chips>span,.technology-symbol>span { animation:none; }
+  .technology-stage-content,.technology-chips>span { animation:none; }
   .portrait-tilt .tilted-card__body { rotate:0deg; }
 }
