@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { projects } from "../src/lib/data.ts";
 import { fieldNotes } from "../src/lib/field-notes.ts";
+import { experience } from "../src/lib/resume.ts";
 
 const baseUrl = process.env.TEST_BASE_URL ?? "http://127.0.0.1:3000";
 
@@ -42,7 +43,7 @@ test("Home keeps resume sections and decorative ASCII while omitting the lab", a
   for (const id of ["about", "experience", "education", "work", "skills", "contact"]) assert.ok(html.includes(`id="${id}"`), `Missing ${id} section`);
   assert.ok(html.includes('href="/#education"'));
   assert.ok(html.includes('href="/#experience"'));
-  assert.ok(html.includes("SAMPLE DATA"), "Dummy resume entries must be labeled");
+  assert.ok(html.includes("SAMPLE DATA"), "Dummy education entries must stay labeled");
   for (const filler of ['id="process"', 'id="notes"', 'class="manifesto"', "Education, employment, and milestones will live here"]) assert.ok(!html.includes(filler));
   assert.ok(!html.includes('id="playground"'));
   assert.ok(!html.includes('id="render-mode"'));
@@ -53,6 +54,18 @@ test("Home keeps resume sections and decorative ASCII while omitting the lab", a
   assert.ok(!html.includes("Contribution Graph"));
   const about = await (await fetch(`${baseUrl}/about`)).text();
   for (const id of ["experience", "education"]) assert.ok(about.includes(`id="${id}"`), `About must include ${id}`);
+});
+
+test("Home and About show the owner's six real competition and community entries", async () => {
+  for (const path of ["/", "/about"]) {
+    const html = await (await fetch(`${baseUrl}${path}`)).text();
+    const section = html.match(/<section[^>]*id="experience"[\s\S]*?<\/section>/)?.[0];
+    assert.ok(section, `Missing experience on ${path}`);
+    for (const entry of experience.entries) assert.ok(section.includes(entry.title), `${path}: missing ${entry.title}`);
+    assert.ok(!section.includes("SAMPLE DATA"), "Real experience must not be marked sample");
+    assert.ok(!section.includes("Frontend Developer Intern"));
+    assert.ok(!section.includes("Company name"));
+  }
 });
 
 test("Field notes have readable bodies, unique titles, and valid routes", async () => {

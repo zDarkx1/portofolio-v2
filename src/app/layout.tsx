@@ -7,6 +7,7 @@ import "./scene-effects.css";
 import "./react-bits-integration.css";
 import "./brand-icons.css";
 import "./immersive-nav.css";
+import "./experience.css";
 import { SiteHeader } from "@/components/site-header";
 import { Footer } from "@/components/footer";
 import { LanguageProvider } from "@/components/language-provider";

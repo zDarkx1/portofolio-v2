@@ -1,0 +1,40 @@
+/* Real competition/community experience with unboxed organizer logos. */
+.experience-intro { max-width:230px; color:var(--copy); font-size:13px; line-height:1.8; }
+.journey-section { --experience-surface:#efede5; }
+.dark .journey-section { --experience-surface:var(--surface-soft); }
+.experience-entry { border-bottom:1px solid var(--border); margin-bottom:32px; background:var(--experience-surface); }
+.experience-entry:last-child { border-bottom:0; margin-bottom:0; }
+.experience-entry-grid { display:grid; grid-template-columns:108px minmax(0,1fr); gap:24px; padding-top:22px; }
+.experience-logos { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:18px; padding-top:5px; }
+.experience-logo { position:relative; display:grid; place-items:center; width:88px; height:96px; flex-shrink:0; }
+.experience-logo img { display:block; width:100%; height:100%; object-fit:contain; }
+.experience-logo-stacked { width:104px; height:132px; }
+.experience-logo-wide { width:108px; height:96px; }
+.experience-logo-padded { width:108px; height:96px; overflow:hidden; }
+.experience-logo-padded img { width:145%; height:145%; max-width:none; }
+.experience-logo-wordmark { width:108px; height:42px; }
+.experience-logo-monochrome { width:108px; height:60px; margin-top:16px; }
+.experience-logo-monochrome img { filter:invert(1); mix-blend-mode:multiply; }
+.dark .experience-logo-monochrome img { filter:none; mix-blend-mode:screen; }
+.experience-logo .experience-logo-dark { display:none; }
+.dark .experience-logo .experience-logo-light { display:none; }
+.dark .experience-logo .experience-logo-dark { display:block; }
+.experience-kind { display:block; color:var(--quiet); font-size:8px; letter-spacing:.1em; }
+.resume-section .experience-entry h3 { font-size:clamp(22px,2.1vw,30px); margin:10px 0; line-height:1.3; }
+.experience-entry .resume-organization { font-size:12px; line-height:1.7; }
+.experience-role { display:inline-block; font-size:11px; line-height:1.5; color:var(--foreground); margin-top:9px; }
+.resume-section .experience-entry p { margin-block:13px 17px; font-size:12px; line-height:1.85; }
+.experience-links { display:flex; flex-wrap:wrap; gap:20px; }
+.experience-links:empty { display:none; }
+.experience-links .text-link { font-size:10px; color:var(--heading-accent); gap:7px; }
+@media(max-width:1100px) { .journey-grid { gap:60px; }.experience-entry-grid { grid-template-columns:90px minmax(0,1fr); gap:18px; }.experience-logo-stacked { width:88px; height:120px; }.experience-logo-wide,.experience-logo-padded,.experience-logo-wordmark,.experience-logo-monochrome { width:90px; } }
+@media(max-width:760px) {
+  .journey-grid { gap:34px; }.experience-intro { max-width:none; margin-top:12px; }
+  .experience-entry-grid { grid-template-columns:68px minmax(0,1fr); gap:15px; padding-top:18px; }
+  .experience-logo { width:62px; height:70px; }.experience-logo-stacked { width:68px; height:96px; }
+  .experience-logo-wide,.experience-logo-padded { width:70px; height:70px; }.experience-logo-wordmark { width:70px; height:30px; }.experience-logo-monochrome { width:70px; height:42px; margin-top:10px; }
+  .resume-section .experience-entry h3 { font-size:22px; letter-spacing:-.045em; }
+  .experience-entry .resume-organization { font-size:10px; }.experience-role { font-size:10px; }
+  .resume-section .experience-entry p { font-size:11px; }
+}
+@media(max-width:380px) { .experience-entry-grid { grid-template-columns:1fr; gap:15px; }.experience-logos { flex-direction:row; justify-content:flex-start; }.experience-logo-stacked { width:80px; height:104px; }.experience-logo-monochrome { width:130px; height:52px; margin-top:0; } }

@@ -22,10 +22,10 @@ Port default 3000. Tambahkan `-- --hostname 127.0.0.1 --port 3011` pada perintah
 
 ## Pengalaman situs
 
-- Hero botanical ASCII dengan orbit, pointer parallax, dan animasi huruf.
+- Hero botanical ASCII dengan pointer parallax dan animasi huruf.
 - About dengan foto asli dan transisi dari ASCII di desktop.
 - Selected work: Pactra dan EventTwin, kartu sticky, dan studi kasus lengkap.
-- Teknologi, pendidikan, dan pengalaman dengan data contoh yang ditandai.
+- Teknologi, enam pengalaman lomba/hackathon/komunitas, serta pendidikan yang masih ditandai sebagai data contoh.
 - Partikel ASCII dengan koneksi pointer dan ripple saat klik; ASCII lab dihapus.
 - Glow/tilt kartu, parallax screenshot, reveal judul, scan foto, dan highlight timeline.
 - Kontak dan footer halftone interaktif. Artikel teknis tetap tersedia di `/articles`.
@@ -46,14 +46,15 @@ src/components/ui/       ASCII Canvas, supplied halftone footer, language switch
 src/lib/data.ts          Identity and verified project data
 src/lib/project-copy.ts  Bilingual project context
 src/lib/field-notes.ts    Bilingual article bodies
-src/lib/resume.ts        Sample education and experience
+src/lib/resume.ts        Real experience and sample education
+public/experience/      Organizer logos and asset provenance
 src/app/scene-effects.css  Orbit, hover, reveal, and idle effects
 src/lib/ascii-engine.ts  Raster sampling, primitives, and effects
 public/                  Original portrait, botanical source, project screenshots
 tests/                   Renderer math, project content, HTTP route checks
 ```
 
-Lihat [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) untuk mengganti isi dan memahami sumber aset. Pendidikan dan pengalaman memiliki section terpisah dengan data contoh di `src/lib/resume.ts`, sesuai permintaan pemilik. Label data contoh dapat dihapus lewat `isSample` setelah data asli diisi. `components.json` memetakan struktur shadcn ke `src/components/ui`.
+Lihat [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) untuk mengganti isi dan memahami sumber aset. Pengalaman memakai kegiatan yang diberikan pemilik; pendidikan masih berupa data contoh di `src/lib/resume.ts`. Sumber logo dan penyesuaian dark/light dicatat di [public/experience/README.md](./public/experience/README.md). Label pendidikan dapat dihapus lewat `isSample` setelah data asli diisi. `components.json` memetakan struktur shadcn ke `src/components/ui`.
 
 ## Validasi
 
@@ -66,7 +67,7 @@ $env:TEST_BASE_URL = 'http://127.0.0.1:3000'
 npm run test:pages
 ```
 
-Enam test data/renderer dan enam test HTTP memeriksa konten serta route. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
+Enam test data/renderer dan tujuh test HTTP memeriksa konten serta route, termasuk enam pengalaman asli di homepage dan About. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
 
 ## Spotify (opsional)
 
