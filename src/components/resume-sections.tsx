@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Code2, GraduationCap, Trophy, Users } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Code2, GraduationCap, Trophy, Users } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { education, experience, type ExperienceLogo } from "@/lib/resume";
+import { ScrollTrigger } from "@/lib/gsap";
 
 function OrganizerLogo({ logo }: { logo: ExperienceLogo }) {
   return <div className={`experience-logo experience-logo-${logo.variant ?? "symbol"}`}>
@@ -45,6 +46,14 @@ export function ResumeSections() {
                   </div>
                 </div>
               </div>
+              <details className="experience-topics" onToggle={() => ScrollTrigger.refresh()}>
+                <summary className="mono"><span>{entry.kind === "community" ? t("Event topics", "Pembahasan acara") : t("Activity focus", "Fokus kegiatan")}</span><ChevronDown size={14} aria-hidden="true" /></summary>
+                <ul>{entry.topics.map((topic) => <li key={topic.en}>{topic[language]}</li>)}</ul>
+              </details>
+              {"photo" in entry && entry.photo && <figure className="experience-photo">
+                <Image src={entry.photo.src} alt={entry.photo.alt[language]} width={entry.photo.width} height={entry.photo.height} sizes="(max-width: 760px) calc(100vw - 76px), (max-width: 1100px) 50vw, 600px" />
+                <figcaption className="mono">{t("Group photo", "Foto bersama")}</figcaption>
+              </figure>}
             </article>;
           })}
         </div>

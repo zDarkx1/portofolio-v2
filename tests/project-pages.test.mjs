@@ -56,7 +56,7 @@ test("Home keeps resume sections and decorative ASCII while omitting the lab", a
   for (const id of ["experience", "education"]) assert.ok(about.includes(`id="${id}"`), `About must include ${id}`);
 });
 
-test("Home and About show the owner's six real competition and community entries", async () => {
+test("Home and About show the owner's real competition and community entries", async () => {
   for (const path of ["/", "/about"]) {
     const html = await (await fetch(`${baseUrl}${path}`)).text();
     const section = html.match(/<section[^>]*id="experience"[\s\S]*?<\/section>/)?.[0];

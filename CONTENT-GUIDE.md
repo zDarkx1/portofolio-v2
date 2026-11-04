@@ -1,6 +1,6 @@
 # Mengisi portofolio
 
-Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pengalaman berisi enam kegiatan yang diberikan pemilik: Innoventure Chapter I UNIKOM, Build Week Hackathon Vol. 1 dan Vol. 2, Mini Hackathon dan event Google I/O Extended Bandung 2026, serta iTechnocup 2026 Web Development PNJ. Hanya pendidikan yang masih memakai data dummy dengan label "DATA CONTOH" / "SAMPLE DATA".
+Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pengalaman berisi delapan kegiatan yang diberikan pemilik: Innoventure Chapter I UNIKOM, Build Week Hackathon Vol. 1 dan Vol. 2, Mini Hackathon dan event Google I/O Extended Bandung 2026, iTechnocup 2026 Web Development PNJ, serta DevFest Bandung 2025 dan 2024. Hanya pendidikan yang masih memakai data dummy dengan label "DATA CONTOH" / "SAMPLE DATA".
 
 ## Lokasi konten
 
@@ -29,6 +29,8 @@ Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pen
 | Lifecycle, resize, visibility, reduced motion Canvas | `src/components/ui/ascii-canvas.tsx` |
 
 Perbarui `experience.entries` dan `education.entries` di `src/lib/resume.ts`. Pengalaman sudah memakai `isSample: false`; pendidikan tetap `true` sampai data asli tersedia. Copy tersedia dalam ID dan EN. Peran full-stack hanya dicantumkan untuk Innoventure sesuai informasi pemilik; kegiatan lain menyebut partisipasi, tanpa klaim juara atau hasil yang belum diberikan. Periode Innoventure dikosongkan karena belum diketahui. Tidak ada tautan CV sebelum berkasnya tersedia.
+
+Setiap pengalaman memiliki `topics` untuk dropdown. Acara komunitas memakai label "Pembahasan acara", sedangkan lomba/hackathon memakai "Fokus kegiatan". Topik mengikuti agenda/guidebook resmi; fokus Innoventure dan iTechnocup dibatasi informasi pemilik dan proyek yang sudah ada. Foto opsional disimpan lewat `photo` dengan dimensi asli dan alt ID/EN. Native `details` mendukung keyboard; toggle me-refresh GSAP ScrollTrigger agar posisi animasi mengikuti tinggi konten.
 
 ## Visual & komponen
 
@@ -130,6 +132,12 @@ Logo A geometris hitam berasal dari `src/lib/brand.ts` dan dipakai oleh `BrandMa
 Validasi integrasi awal 2026-10-29: production build/TypeScript dan lint komponen baru lulus, 12 tes data/renderer/HTTP lulus, dan lima endpoint aset branding mengembalikan HTTP 200 dengan tipe gambar yang benar. Browser kembali tersedia pada pemeriksaan perbaikan navbar: bug header keluar viewport direproduksi dari posisi scroll, lalu diperbaiki. Delapan klik toggle, double-click cepat, Escape, klik di luar, focus trap Tab/Shift+Tab, dan navigasi Pendidikan telah diperiksa. Tema terang/gelap dan viewport desktop 1280 px serta mobile 390 px diperiksa tanpa overflow horizontal.
 
 Validasi akhir navbar compact: production build/TypeScript, lint, 6 tes data/renderer, dan 6 tes HTTP lulus. Pada viewport 320 × 568, panel dapat digulir tanpa memindahkan tombol tutup dan tanpa overflow horizontal. Build produksi juga diperiksa dari posisi scroll sekitar 1463 px; tombol tutup tetap pada y=22 px. Background hero tetap bermula di x=0, y=0. Screenshot produksi: `artifacts/portfolio-compact-navbar.png`.
+
+## Foto I/O, DevFest dan dropdown — 4 November 2026
+
+DevFest Bandung 2024 dan 2025 ditambahkan sebagai partisipasi acara, dengan tanggal dan ringkasan topik dari halaman GDG resmi. Delapan pengalaman memiliki dropdown native yang mendukung mouse dan keyboard; label lomba menyebut fokus kegiatan. Foto bersama I/O dari URL pemilik disimpan di `public/experience/photos/` dan ditampilkan utuh di homepage dan About melalui Next Image. Tidak ada klaim mengikuti seluruh sesi atau menyelesaikan workshop.
+
+Production build/TypeScript dan tujuh tes HTTP lulus. Browser memverifikasi buka/tutup dengan klik dan Enter, pergantian ID/EN, dark/light, pemuatan foto dengan rasio asli, serta desktop dan viewport mobile 390 × 844 tanpa overflow horizontal atau error/warning console. Screenshot: `artifacts/devfest-topics-desktop.png`, `artifacts/devfest-topics-mobile-light.png`, `artifacts/google-io-photo-desktop.png`, dan `artifacts/google-io-photo-mobile.png`.
 
 ## Pengalaman lomba dan komunitas — 30 Oktober 2026
 

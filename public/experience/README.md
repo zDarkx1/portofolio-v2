@@ -13,6 +13,10 @@ Participation and the Full-stack Developer role for Innoventure Chapter I were s
 
 The generated I/O extraction was rejected because it altered small lettering. The original is used in the page instead.
 
+## Event photography
+
+`photos/google-io-extended-bandung-2026.webp` is the [group photo supplied by the owner](https://devfest.gdgbandung.com/images/2026/gdg-sign-group-1200.webp), identified by the owner as Google I/O Extended Bandung 2026. The original 1200 × 737 WebP is stored unchanged and displayed at its full aspect ratio beneath the community event entry, with bilingual alt text and native lazy loading through Next Image.
+
 PNJ extraction prompt: “Remove only the white rectangular background OUTSIDE the exact PNJ shield logo from this supplied image. Output the exact original colored logo as a clean transparent PNG. Preserve all teal double outlines, red circle, teal waves, internal white shield fill, and the white words 'POLITEKNIK NEGERI JAKARTA' pixel-faithfully. Internal white areas INSIDE the shield must remain opaque white. Do not redraw or reinterpret the logo, do not change typeface, spelling, proportions, colors, or composition. Do not add texture, outlines, shadows, or a background. Foreground is the entire shield including its opaque white interior; only the surrounding blank rectangle becomes alpha zero.”
 
 Event context and dates, checked 2026-10-30:
@@ -21,3 +25,10 @@ Event context and dates, checked 2026-10-30:
 - [Build Week Vol. 2 guidebook](https://www.girlmeetstech.org/guidebook-build-week-hackathon-vol2): September 2026; BOT Chain DApp hackathon. Only month/year are displayed; weekday labels in the organizer's table are not reproduced.
 - [Google I/O Extended Bandung 2026](https://gdg.community.dev/events/details/google-gdg-bandung-presents-get-ready-for-google-io-extended-2026/cohost-gdg-bandung/): 23 August 2026; the community event and mini hackathon are separate participation entries.
 - iTechnocup 2026 and Innoventure Chapter I names/participation follow the owner's supplied details. EventTwin's iTechnocup relationship already existed in the portfolio's verified project copy.
+
+Added on 2026-11-04:
+
+- [DevFest Bandung 2024](https://gdg.community.dev/events/details/google-gdg-bandung-presents-devfest-bandung-2024-1/): 7 December 2024, Universitas Kristen Maranatha. Topic summaries cover LLMs/production ML, Gemini on Android/IoT, voice AI, scroll-driven CSS and UI/UX.
+- [DevFest Bandung 2025](https://gdg.community.dev/events/details/google-gdg-bandung-presents-devfest-bandung-2025-the-biggest-developer-festival-in-indonesia/): 29 November 2025, Universitas Kristen Maranatha. Topic summaries cover AI/Gemini, Google Cloud, Firebase/Genkit, web performance/CSS and Kotlin Multiplatform.
+- The owner supplied participation in both DevFests. Topic lists summarize the event program, without claiming attendance at every individual talk or completion of workshops. Competition focus lists describe the supplied role/project or the organizer's brief, without inventing outcomes.
+- Google I/O topics summarize its official recap, talks and mini codelab. The photo remains attached only to its community event entry.

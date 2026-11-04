@@ -25,7 +25,7 @@ Port default 3000. Tambahkan `-- --hostname 127.0.0.1 --port 3011` pada perintah
 - Hero botanical ASCII dengan pointer parallax dan animasi huruf.
 - About dengan foto asli dan transisi dari ASCII di desktop.
 - Selected work: Pactra dan EventTwin, kartu sticky, dan studi kasus lengkap.
-- Teknologi, enam pengalaman lomba/hackathon/komunitas, serta pendidikan yang masih ditandai sebagai data contoh.
+- Teknologi, delapan pengalaman lomba/hackathon/komunitas dengan dropdown topik, serta pendidikan yang masih ditandai sebagai data contoh.
 - Partikel ASCII dengan koneksi pointer dan ripple saat klik; ASCII lab dihapus.
 - Glow/tilt kartu, parallax screenshot, reveal judul, scan foto, dan highlight timeline.
 - Kontak dan footer halftone interaktif. Artikel teknis tetap tersedia di `/articles`.
@@ -67,7 +67,7 @@ $env:TEST_BASE_URL = 'http://127.0.0.1:3000'
 npm run test:pages
 ```
 
-Enam test data/renderer dan tujuh test HTTP memeriksa konten serta route, termasuk enam pengalaman asli di homepage dan About. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
+Enam test data/renderer dan tujuh test HTTP memeriksa konten serta route, termasuk pengalaman asli di homepage dan About. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
 
 ## Spotify (opsional)
 
