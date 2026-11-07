@@ -1,8 +1,14 @@
 # Mengisi portofolio
 
-Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pengalaman berisi delapan kegiatan yang diberikan pemilik: Innoventure Chapter I UNIKOM, Build Week Hackathon Vol. 1 dan Vol. 2, Mini Hackathon dan event Google I/O Extended Bandung 2026, iTechnocup 2026 Web Development PNJ, serta DevFest Bandung 2025 dan 2024. Hanya pendidikan yang masih memakai data dummy dengan label "DATA CONTOH" / "SAMPLE DATA".
+Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pengalaman berisi sepuluh kegiatan yang diberikan pemilik: ITECH Competition Season 9 (juara 3), Season 8 (juara 2), Innoventure Chapter I UNIKOM, Build Week Hackathon Vol. 1 dan Vol. 2, Mini Hackathon dan event Google I/O Extended Bandung 2026, iTechnocup 2026 Web Development PNJ, serta DevFest Bandung 2025 dan 2024. Pendidikan mengikuti screenshot LinkedIn yang diberikan pemilik pada 7 November 2026: SMK Negeri 1 Cimahi, Rekayasa Perangkat Lunak, Juli 2024–Desember 2027, kelas XII, dengan fokus Software Development dan Cybersecurity.
 
 ## Lokasi konten
+
+Sertifikasi berada setelah pendidikan di `#certifications`, pada homepage dan About. Data keenam sertifikat ada di `src/lib/certifications.ts`, komponen deretan di `src/components/certification-section.tsx`, dan CSS di `src/app/certifications.css`. PDF asli serta preview halaman pertama disimpan di `public/certificates/`; daftar sumber dan tanggal ada di `public/certificates/README.md`. Gunakan panah atau swipe untuk melihat kartu berikutnya; klik preview atau "Buka PDF" membuka PDF lengkap di tab baru. File Komdigi mempertahankan kedua halaman. Navigasi header/footer memuat tautan Sertifikasi. Urutan section homepage menjadi 01–07.
+
+Validasi sertifikasi: production build/TypeScript dan delapan tes HTTP lulus, termasuk keenam PDF dan preview. Browser memverifikasi tombol geser sampai kartu terakhir, buka PDF Komdigi di tab baru, ID/EN, dark/light, dan viewport 390 × 844 tanpa overflow dokumen atau error/warning console. Enam thumbnail berukuran seragam dengan halaman utuh. Salinan PDF dibandingkan dengan SHA-256 file asli. Screenshot: `artifacts/certifications-desktop-dark.png` dan `artifacts/certifications-mobile-light.png`.
+
+Logo sekolah memakai PNG resmi dari URL pemilik: `https://www.smkn1-cmi.sch.id/wp-content/uploads/2023/05/SMK_Negeri_1_Cimahi-2.png`. File 100 × 98 dengan alpha disimpan tanpa modifikasi di `public/education/smkn-1-cimahi.png` dan tampil selebar 64 px pada kedua tema.
 
 | Konten | File |
 | --- | --- |
@@ -17,7 +23,7 @@ Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pen
 | Komponen logo brand dan label | `src/components/brand-icon.tsx` |
 | SVG brand terpilih dan sumber aslinya | `src/lib/brand-icons.ts` |
 | Generator SVG dari Simple Icons | `scripts/sync-brand-icons.mjs` |
-| Pengalaman pemilik dan data contoh pendidikan | `src/lib/resume.ts` |
+| Pengalaman dan pendidikan pemilik | `src/lib/resume.ts` |
 | Tampilan pendidikan dan pengalaman | `src/components/resume-sections.tsx` |
 | Layout dan pergantian logo penyelenggara sesuai tema | `src/app/experience.css` |
 | Logo kegiatan, sumber, dan catatan pengolahan aset | `public/experience/README.md` |
@@ -28,7 +34,7 @@ Identitas, foto, kontak, Pactra, dan EventTwin memakai data repo sebelumnya. Pen
 | Pengaturan resep dan renderer ASCII | `src/lib/ascii-engine.ts` |
 | Lifecycle, resize, visibility, reduced motion Canvas | `src/components/ui/ascii-canvas.tsx` |
 
-Perbarui `experience.entries` dan `education.entries` di `src/lib/resume.ts`. Pengalaman sudah memakai `isSample: false`; pendidikan tetap `true` sampai data asli tersedia. Copy tersedia dalam ID dan EN. Peran full-stack hanya dicantumkan untuk Innoventure sesuai informasi pemilik; kegiatan lain menyebut partisipasi, tanpa klaim juara atau hasil yang belum diberikan. Periode Innoventure dikosongkan karena belum diketahui. Tidak ada tautan CV sebelum berkasnya tersedia.
+Perbarui `experience.entries` dan `education.entries` di `src/lib/resume.ts`. Pengalaman dan pendidikan memakai `isSample: false` karena datanya sudah diberikan pemilik. Copy tersedia dalam ID dan EN. Peran full-stack hanya dicantumkan untuk Innoventure sesuai informasi pemilik; kegiatan lain menyebut partisipasi, tanpa klaim juara atau hasil yang belum diberikan. Periode Innoventure dikosongkan karena belum diketahui. Tidak ada tautan CV sebelum berkasnya tersedia.
 
 Setiap pengalaman memiliki `topics` untuk dropdown. Acara komunitas memakai label "Pembahasan acara", sedangkan lomba/hackathon memakai "Fokus kegiatan". Topik mengikuti agenda/guidebook resmi; fokus Innoventure dan iTechnocup dibatasi informasi pemilik dan proyek yang sudah ada. Foto opsional disimpan lewat `photo` dengan dimensi asli dan alt ID/EN. Native `details` mendukung keyboard; toggle me-refresh GSAP ScrollTrigger agar posisi animasi mengikuti tinggi konten.
 

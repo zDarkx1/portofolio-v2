@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronDown, Code2, GraduationCap, Trophy, Users } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Code2, Trophy, Users } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
-import { education, experience, type ExperienceLogo } from "@/lib/resume";
+import { education, experience, type ExperienceEntry, type ExperienceLogo } from "@/lib/resume";
 import { ScrollTrigger } from "@/lib/gsap";
 
 function OrganizerLogo({ logo }: { logo: ExperienceLogo }) {
@@ -27,7 +27,7 @@ export function ResumeSections() {
         </div>
         <div className="journey-list">
           <div className="journey-track" aria-hidden="true" />
-          {experience.entries.map((entry, index) => {
+          {experience.entries.map((entry: ExperienceEntry, index) => {
             const Icon = entry.kind === "community" ? Users : entry.kind === "hackathon" ? Code2 : Trophy;
             return <article className="journey-item experience-entry reveal" key={entry.id} data-experience={entry.id}>
               <div className="journey-node" aria-hidden="true"><Icon size={12} /></div>
@@ -37,12 +37,14 @@ export function ResumeSections() {
                 <div className="experience-entry-copy">
                   <span className="experience-kind mono">{entry.kind === "community" ? t("COMMUNITY EVENT", "EVENT KOMUNITAS") : entry.kind === "hackathon" ? "HACKATHON" : t("COMPETITION", "KOMPETISI")}</span>
                   <h3>{entry.title}</h3>
+                  {entry.achievement && <span className="experience-achievement mono"><Trophy size={13} aria-hidden="true" />{entry.achievement[language]}</span>}
                   <span className="resume-organization">{entry.organization[language]}</span>
                   <span className="experience-role">{entry.role[language]}</span>
                   <p>{entry.description[language]}</p>
                   <div className="experience-links">
                     {"source" in entry && entry.source && <a className="text-link" href={entry.source} target="_blank" rel="noopener noreferrer">{t("Event details", "Detail event")}<ArrowUpRight size={14} /></a>}
                     {"project" in entry && entry.project && <Link className="text-link" href={entry.project.href}>{entry.project.title}<ArrowUpRight size={14} /></Link>}
+                    {entry.coverage?.map((article) => <a className="text-link" key={article.href} href={article.href} target="_blank" rel="noopener noreferrer">{article.label}<ArrowUpRight size={14} /></a>)}
                   </div>
                 </div>
               </div>
@@ -51,8 +53,8 @@ export function ResumeSections() {
                 <ul>{entry.topics.map((topic) => <li key={topic.en}>{topic[language]}</li>)}</ul>
               </details>
               {"photo" in entry && entry.photo && <figure className="experience-photo">
-                <Image src={entry.photo.src} alt={entry.photo.alt[language]} width={entry.photo.width} height={entry.photo.height} sizes="(max-width: 760px) calc(100vw - 76px), (max-width: 1100px) 50vw, 600px" />
-                <figcaption className="mono">{t("Group photo", "Foto bersama")}</figcaption>
+                {entry.photo.href ? <a href={entry.photo.href} target="_blank" rel="noopener noreferrer"><Image src={entry.photo.src} alt={entry.photo.alt[language]} width={entry.photo.width} height={entry.photo.height} sizes="(max-width: 760px) 240px, 320px" /></a> : <Image src={entry.photo.src} alt={entry.photo.alt[language]} width={entry.photo.width} height={entry.photo.height} sizes="(max-width: 760px) 240px, 320px" />}
+                <figcaption className="mono">{entry.photo.caption?.[language] ?? t("Group photo", "Foto bersama")}</figcaption>
               </figure>}
             </article>;
           })}
@@ -68,10 +70,11 @@ export function ResumeSections() {
           {education.isSample && <span className="sample-badge">{t("SAMPLE DATA", "DATA CONTOH")}</span>}
         </div>
         <div className="education-list">{education.entries.map((entry) => <article className="education-card reveal" key={entry.institution.en}>
-          <div className="education-card-top mono"><GraduationCap size={23} aria-hidden="true" /><span>{entry.period}</span></div>
+          <div className="education-card-top mono"><Image className="education-school-logo" src={entry.logo.src} alt={entry.logo.alt} width={entry.logo.width} height={entry.logo.height} sizes="64px" /><span>{entry.period[language]}</span></div>
           <h3>{entry.institution[language]}</h3>
           <p className="education-major">{entry.major[language]}</p>
           <p className="education-qualification">{entry.qualification[language]}</p>
+          <p className="education-qualification">{entry.grade[language]}</p>
           <div className="resume-tags mono">{entry.subjects[language].map((subject) => <span key={subject}>{subject}</span>)}</div>
         </article>)}</div>
       </div>

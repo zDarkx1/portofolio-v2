@@ -31,6 +31,7 @@ export function SiteHeader() {
       { label: t("About", "Tentang"), href: "/#about" },
       { label: t("Experience", "Pengalaman"), href: "/#experience" },
       { label: t("Education", "Pendidikan"), href: "/#education" },
+      { label: t("Certifications", "Sertifikasi"), href: "/#certifications" },
       { label: t("Projects", "Proyek"), href: "/#work" },
       { label: t("Tech stack", "Teknologi"), href: "/#skills" },
       { label: t("Contact", "Kontak"), href: "/#contact" },

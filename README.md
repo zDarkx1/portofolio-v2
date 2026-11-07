@@ -24,8 +24,9 @@ Port default 3000. Tambahkan `-- --hostname 127.0.0.1 --port 3011` pada perintah
 
 - Hero botanical ASCII dengan pointer parallax dan animasi huruf.
 - About dengan foto asli dan transisi dari ASCII di desktop.
+- Sertifikasi dengan enam PDF asli, preview ringkas dalam deretan horizontal, tombol geser, dan dukungan swipe mobile.
 - Selected work: Pactra dan EventTwin, kartu sticky, dan studi kasus lengkap.
-- Teknologi, delapan pengalaman lomba/hackathon/komunitas dengan dropdown topik, serta pendidikan yang masih ditandai sebagai data contoh.
+- Teknologi, sepuluh pengalaman lomba/hackathon/komunitas dengan dropdown topik, serta pendidikan SMK Negeri 1 Cimahi.
 - Partikel ASCII dengan koneksi pointer dan ripple saat klik; ASCII lab dihapus.
 - Glow/tilt kartu, parallax screenshot, reveal judul, scan foto, dan highlight timeline.
 - Kontak dan footer halftone interaktif. Artikel teknis tetap tersedia di `/articles`.
@@ -46,7 +47,7 @@ src/components/ui/       ASCII Canvas, supplied halftone footer, language switch
 src/lib/data.ts          Identity and verified project data
 src/lib/project-copy.ts  Bilingual project context
 src/lib/field-notes.ts    Bilingual article bodies
-src/lib/resume.ts        Real experience and sample education
+src/lib/resume.ts        Owner-provided experience and education
 public/experience/      Organizer logos and asset provenance
 src/app/scene-effects.css  Orbit, hover, reveal, and idle effects
 src/lib/ascii-engine.ts  Raster sampling, primitives, and effects
@@ -54,7 +55,7 @@ public/                  Original portrait, botanical source, project screenshot
 tests/                   Renderer math, project content, HTTP route checks
 ```
 
-Lihat [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) untuk mengganti isi dan memahami sumber aset. Pengalaman memakai kegiatan yang diberikan pemilik; pendidikan masih berupa data contoh di `src/lib/resume.ts`. Sumber logo dan penyesuaian dark/light dicatat di [public/experience/README.md](./public/experience/README.md). Label pendidikan dapat dihapus lewat `isSample` setelah data asli diisi. `components.json` memetakan struktur shadcn ke `src/components/ui`.
+Lihat [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) untuk mengganti isi dan memahami sumber aset. Pengalaman dan pendidikan memakai data yang diberikan pemilik di `src/lib/resume.ts`. Sumber logo dan penyesuaian dark/light dicatat di [public/experience/README.md](./public/experience/README.md). `components.json` memetakan struktur shadcn ke `src/components/ui`.
 
 ## Validasi
 
@@ -67,7 +68,7 @@ $env:TEST_BASE_URL = 'http://127.0.0.1:3000'
 npm run test:pages
 ```
 
-Enam test data/renderer dan tujuh test HTTP memeriksa konten serta route, termasuk pengalaman asli di homepage dan About. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
+Enam test data/renderer dan delapan test HTTP memeriksa konten serta route, termasuk pengalaman asli, enam sertifikat PDF dan preview di homepage dan About. Pemeriksaan tampilan dan interaksi tetap dilakukan di browser, termasuk viewport mobile.
 
 ## Spotify (opsional)
 

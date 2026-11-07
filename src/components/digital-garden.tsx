@@ -9,6 +9,7 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { profile, projects } from "@/lib/data";
 import { useLanguage } from "@/components/language-provider";
 import { ResumeSections } from "@/components/resume-sections";
+import { CertificationSection } from "@/components/certification-section";
 import { AsciiCanvas } from "@/components/ui/ascii-canvas";
 import { AmbientField } from "@/components/ui/ambient-field";
 import { HeroGradient } from "@/components/hero-gradient";
@@ -105,7 +106,7 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
           <div className="hero-art-drift"><AsciiCanvas className="hero-art" alt={t("Animated ASCII fern", "Pakis ASCII bergerak")} settings={{ renderMode: "characters", cellSize: 5, ink: "var(--ascii-ink)", contrast: 60, density: 70, animStyle: "wave", grayscale: 100, toneCurve: [{ x: 0, y: 0 }, { x: .022, y: 0 }, { x: .15, y: .68 }, { x: .55, y: 1 }, { x: 1, y: 1 }] }} scrollDriven /></div>
         </div>
       </div>
-      <div className="hero-bottom"><span className="mono">{profile.fullName.toUpperCase()}</span><a href="#about" className="mono scroll-cue">SCROLL<ArrowDown size={15} /></a><span className="mono hero-year">[ 01 — 06 ]</span></div>
+      <div className="hero-bottom"><span className="mono">{profile.fullName.toUpperCase()}</span><a href="#about" className="mono scroll-cue">SCROLL<ArrowDown size={15} /></a><span className="mono hero-year">[ 01 — 07 ]</span></div>
     </section>
     </div>
 
@@ -133,11 +134,12 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
     </section>
 
     <ResumeSections />
+    <CertificationSection />
 
     {!aboutOnly && <>
       <section className="work-section section-space" id="work">
         <div className="container">
-          <SectionLabel number="04">{t("PROJECTS", "PROYEK")}</SectionLabel>
+          <SectionLabel number="05">{t("PROJECTS", "PROYEK")}</SectionLabel>
           <div className="section-heading reveal"><h2>{t("Selected projects.", "Proyek pilihan.")}</h2><Link href="/projects" className="text-link">{t("All projects", "Semua proyek")}<ArrowUpRight size={17} /></Link></div>
           <div className="project-stack">{projects.map((project, i) => <article key={project.slug} className={`work-card work-card-${i}`}>
             <span className="work-watermark" aria-hidden="true">0{i + 1}</span>
@@ -161,7 +163,7 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
       </section>
 
       <section className="skills-section container section-space" id="skills">
-        <SectionLabel number="05">{t("TECHNOLOGIES", "TEKNOLOGI")}</SectionLabel>
+        <SectionLabel number="06">{t("TECHNOLOGIES", "TEKNOLOGI")}</SectionLabel>
         <div className="section-heading reveal"><h2>{t("Tech stack.", "Teknologi.")}</h2></div>
         <TechnologyExplorer />
       </section>
@@ -170,7 +172,7 @@ export function DigitalGarden({ aboutOnly = false }: { aboutOnly?: boolean }) {
 
     <section className="contact-section" id="contact">
       <div className="container contact-inner">
-        <SectionLabel number="06">{t("CONTACT", "KONTAK")}</SectionLabel>
+        <SectionLabel number="07">{t("CONTACT", "KONTAK")}</SectionLabel>
         <div className="contact-grid">
           <div className="reveal"><span className="contact-ascii" aria-hidden="true">{`( * )`}</span><h2>{t("Get in touch.", "Hubungi saya.")}</h2><p>{t("Email me for project discussions or collaboration.", "Email untuk diskusi proyek atau kolaborasi.")}</p></div>
           <div className="contact-links">

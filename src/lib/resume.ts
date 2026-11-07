@@ -1,5 +1,5 @@
 // Experience participation and the UNIKOM role were supplied by the owner.
-// Event dates/context are linked to organizer pages. Education is still sample data.
+// Event dates/context are linked to organizer pages. Education follows the owner's LinkedIn screenshot.
 type Copy = { en: string; id: string };
 
 export type ExperienceLogo = {
@@ -14,12 +14,14 @@ export type ExperienceEntry = {
   kind: "competition" | "hackathon" | "community";
   organization: Copy;
   role: Copy;
+  achievement?: Copy;
   period: Copy | null;
   description: Copy;
   topics: Copy[];
   logos: ExperienceLogo[];
-  photo?: { src: string; width: number; height: number; alt: Copy };
+  photo?: { src: string; width: number; height: number; alt: Copy; caption?: Copy; href?: string };
   source?: string;
+  coverage?: { label: string; href: string }[];
   project?: { title: string; href: string };
 };
 
@@ -29,6 +31,59 @@ const googleIoEvent = "https://gdg.community.dev/events/details/google-gdg-bandu
 export const experience = {
   isSample: false,
   entries: [
+    {
+      id: "itech-competition-season-9",
+      title: "ITECH Competition · Season 9",
+      kind: "competition",
+      organization: { en: "STMIK LIKMI Bandung", id: "STMIK LIKMI Bandung" },
+      role: { en: "SMK Negeri 1 Cimahi Team Member", id: "Anggota Tim SMK Negeri 1 Cimahi" },
+      achievement: { en: "3rd Place", id: "Juara 3" },
+      period: { en: "11 Apr 2026", id: "11 Apr 2026" },
+      description: {
+        en: "Won third place with the school team in AI Playground: Battle of Creators, presenting an AI-based student consumption tracker.",
+        id: "Meraih juara 3 bersama tim sekolah dalam AI Playground: Battle of Creators, dengan solusi AI untuk memantau pola konsumsi siswa.",
+      },
+      logos: [{ src: "/experience/logos/stmik-likmi.png", alt: "STMIK LIKMI" }],
+      topics: [
+        { en: "AI solutions for everyday school challenges", id: "Solusi AI untuk permasalahan sehari-hari di sekolah" },
+        { en: "Model demonstrations with Teachable Machine", id: "Demonstrasi model dengan Teachable Machine" },
+        { en: "Student consumption tracking and healthy habits", id: "Pemantauan pola konsumsi siswa dan kebiasaan hidup sehat" },
+        { en: "Team presentations, solution relevance and practical impact", id: "Presentasi tim, relevansi solusi dan dampak praktis" },
+      ],
+      source: "https://www.smkn1-cmi.sch.id/2026/04/11/siswa-smk-negeri-1-cimahi-raih-prestasi-di-itech-competition-session-9-ai-playground-battle-of-creators/",
+      coverage: [
+        { label: "E-Kabari", href: "https://www.e-kabari.com/2026/04/itech-season-9-ai-center-bandung-dorong.html" },
+        { label: "Trias Politika", href: "https://triaspolitika.id/itech-season-9-ai-center-bandung-dorong-inovator-ai-dari-sekolah/" },
+      ],
+      photo: {
+        src: "/experience/photos/itech-season-9.jpg", width: 720, height: 480,
+        alt: { en: "Third-place award presentation at ITECH Competition Season 9.", id: "Penyerahan penghargaan juara 3 ITECH Competition Season 9." },
+        caption: { en: "Season 9 award presentation · Trias Politika", id: "Penyerahan penghargaan Season 9 · Trias Politika" },
+        href: "https://triaspolitika.id/itech-season-9-ai-center-bandung-dorong-inovator-ai-dari-sekolah/",
+      },
+    },
+    {
+      id: "itech-competition-season-8",
+      title: "ITECH Competition · Season 8",
+      kind: "competition",
+      organization: { en: "STMIK LIKMI Bandung", id: "STMIK LIKMI Bandung" },
+      role: { en: "Competition Participant", id: "Peserta Kompetisi" },
+      achievement: { en: "2nd Place", id: "Juara 2" },
+      period: { en: "8 Feb 2025", id: "8 Feb 2025" },
+      description: {
+        en: "Won second place in the AI competition organized by STMIK LIKMI, with mentoring support from Indigo.",
+        id: "Meraih juara 2 dalam kompetisi AI yang diselenggarakan STMIK LIKMI, dengan dukungan mentoring dari Indigo.",
+      },
+      logos: [{ src: "/experience/logos/stmik-likmi.png", alt: "STMIK LIKMI" }],
+      topics: [
+        { en: "AI ideas and technology-based business opportunities", id: "Ide AI dan peluang bisnis berbasis teknologi" },
+        { en: "Hands-on machine learning with Teachable Machine", id: "Praktik machine learning dengan Teachable Machine" },
+        { en: "Computer vision and audio recognition", id: "Computer vision dan pengenalan audio" },
+        { en: "Creativity, relevance and implementation potential", id: "Kreativitas, relevansi dan potensi implementasi" },
+      ],
+      source: "https://bisnis.cilacap.info/ci-71195/kembangkan-potensi-ai-itech-competition-2025-dan-indigo-siap-cetak-talenta-ai-masa-depan",
+      coverage: [{ label: "VRITIMES", href: "https://www.vritimes.com/id/articles/b7d3f721-cbcd-11ee-a262-0a58a9feac02/8567dd1b-e9d9-11ef-a070-0a58a9feac02" }],
+    },
     {
       id: "innoventure-chapter-1",
       title: "Innoventure Chapter I",
@@ -195,16 +250,18 @@ export const experience = {
 };
 
 export const education = {
-  isSample: true,
+  isSample: false,
   entries: [
     {
-      institution: { en: "School name", id: "Nama sekolah" } satisfies Copy,
+      institution: { en: "SMK Negeri 1 Cimahi", id: "SMK Negeri 1 Cimahi" } satisfies Copy,
+      logo: { src: "/education/smkn-1-cimahi.png", width: 100, height: 98, alt: "SMK Negeri 1 Cimahi" },
       qualification: { en: "Vocational High School", id: "Sekolah Menengah Kejuruan" } satisfies Copy,
-      major: { en: "Software Engineering", id: "Rekayasa Perangkat Lunak" } satisfies Copy,
-      period: "2023 — 2026",
+      major: { en: "Computer Software Engineering", id: "Rekayasa Perangkat Lunak" } satisfies Copy,
+      period: { en: "Jul 2024 — Dec 2027", id: "Jul 2024 — Des 2027" } satisfies Copy,
+      grade: { en: "Grade XII", id: "Kelas XII" } satisfies Copy,
       subjects: {
-        en: ["Web programming", "Databases", "Software development"],
-        id: ["Pemrograman web", "Basis data", "Pengembangan perangkat lunak"],
+        en: ["Software Development", "Cybersecurity"],
+        id: ["Pengembangan Perangkat Lunak", "Keamanan Siber"],
       },
     },
   ],

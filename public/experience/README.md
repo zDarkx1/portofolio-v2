@@ -1,6 +1,14 @@
 # Experience assets and sources
 
-Participation and the Full-stack Developer role for Innoventure Chapter I were supplied by the portfolio owner. No award, placing, project completion, or technology stack is inferred. Innoventure's date is omitted because it was not supplied or verified. Education remains separately labeled sample data.
+## ITECH Competition Seasons 8 and 9
+
+The owner supplied third place for Season 9 and second place for Season 8. The [school report](https://www.smkn1-cmi.sch.id/2026/04/11/siswa-smk-negeri-1-cimahi-raih-prestasi-di-itech-competition-session-9-ai-playground-battle-of-creators/) confirms Alrizky's team and third place on 11 April 2026. [E-Kabari](https://www.e-kabari.com/2026/04/itech-season-9-ai-center-bandung-dorong.html) describes Teachable Machine and the school's consumption-tracking idea. Season 8's February 2025 period and AI topics follow [Cilacap.info](https://bisnis.cilacap.info/ci-71195/kembangkan-potensi-ai-itech-competition-2025-dan-indigo-siap-cetak-talenta-ai-masa-depan); the owner's second-place result is not attributed to that article. The supplied VRITIMES link did not expose article content during verification.
+
+- `logos/stmik-likmi.png`: [official LIKMI logo supplied by owner](https://likmi.ac.id/wp-content/uploads/2018/09/Logo.png), 800 × 800, original transparency preserved.
+- `photos/itech-season-9.jpg`: [owner-supplied Trias Politika image](https://triaspolitika.id/wp-content/uploads/2026/04/ITECH-Season-9-AI-Center-Bandung-Dorong-Inovator-AI-dari-Sekolah.jpg), 720 × 480. Stored unchanged; image links to its source article and caption credits Trias Politika. No individual in the photo is identified.
+- Coverage links include all five articles supplied by the owner. ITECH Competition is separate from iTechnocup PNJ.
+
+Participation and the Full-stack Developer role for Innoventure Chapter I were supplied by the portfolio owner. No award, placing, project completion, or technology stack is inferred. Innoventure's date is omitted because it was not supplied or verified. Education now follows the owner-provided LinkedIn screenshot (7 November 2026).
 
 | Asset | Source / treatment |
 | --- | --- |
