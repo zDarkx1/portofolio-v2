@@ -8,6 +8,8 @@ html { scrollbar-gutter:stable; }
 .ifn-brand-mark { display:block; width:29px; height:29px; }
 .ifn-brand-name { font-size:15px; font-weight:600; letter-spacing:-.065em; }
 .ifn-header-actions { display:flex; align-items:center; gap:12px; }
+.ifn-cv-link { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:34px; padding:6px 8px; border:1px solid var(--border); border-radius:6px; font-size:11px; white-space:nowrap; }
+.ifn-cv-link:hover { background:var(--muted); }
 .ifn-header-actions .language-switcher { padding:2px; }
 .ifn-header-actions .language-switcher button { min-width:26px; min-height:25px; font-size:9px; }
 .ifn-header-actions .theme-toggle { width:30px; height:30px; }
@@ -57,7 +59,7 @@ html { scrollbar-gutter:stable; }
   .ifn-panel-footer { gap:16px; }.ifn-email { font-size:13px; }.ifn-socials { gap:17px; }
 }
 @media(max-width:360px) {
-  .ifn-header-actions { gap:8px; }.immersive-header-inner { padding-inline:10px; }
+  .ifn-header-actions { gap:6px; }.immersive-header-inner { padding-inline:10px; }
   .ifn-panel-content { padding:16px; }.ifn-link { font-size:19px; gap:6px; }
   .ifn-links { grid-template-columns:1fr; gap:3px; }
   .ifn-socials { gap:12px; }

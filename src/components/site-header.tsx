@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/components/language-provider";
 import { AnimatedThemeToggler } from "@/components/ruixen/animated-theme-toggler";
@@ -25,7 +26,12 @@ export function SiteHeader() {
   return <ImmersiveFullscreenNav
     brand={<><BrandMark className="ifn-brand-mark" /><span className="ifn-brand-name">alrizky.</span></>}
     brandLabel={t("Alrizky — home", "Alrizky — beranda")}
-    actions={<><LanguageSwitcher /><AnimatedThemeToggler /></>}
+    actions={<>
+      <a className="ifn-cv-link" href="/CV_Alrizky_2026.pdf" target="_blank" rel="noopener noreferrer" aria-label={t("View CV (PDF, opens in a new tab)", "Lihat CV (PDF, dibuka di tab baru)")}>
+        CV<ArrowUpRight size={12} aria-hidden="true" />
+      </a>
+      <LanguageSwitcher /><AnimatedThemeToggler />
+    </>}
     fullName={profile.fullName} role={profile.role} email={profile.email}
     links={[
       { label: t("About", "Tentang"), href: "/#about" },
